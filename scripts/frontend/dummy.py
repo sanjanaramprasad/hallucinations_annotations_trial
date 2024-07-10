@@ -358,4 +358,49 @@ def save_annotation():
 
 
 if __name__ == "__main__":
-    application.run(host='0.0.0.0', port=8080)
+    application.run(host='0.0.0.0', port=8080)\
+
+
+
+
+# @login_required
+# @application.route('/next',)
+# def next():
+#         username = current_user.username 
+#         subquery = select([label]).where(and_(generated_summaries.c.docid == label.c.docid, label.c.user_id == username))
+        
+#         stmt = select(generated_summaries.c.docid).where(~exists(subquery)).order_by(generated_summaries.c.docid).limit(1)
+
+#         with db_engine.connect() as con:
+#             summary_uuid = con.execute(stmt).fetchone()
+#             print(con.execute(stmt).fetchall() )
+#         if summary_uuid is None:
+#             return render_template("all_done.html")
+        
+#         print('NEXT', summary_uuid[0], username, )
+#         return annotate(summary_uuid[0])
+
+
+# @login_required
+# @application.route('/annotate/<docid>')
+# def annotate(docid):
+#     # uid is a unique identifier for a *generated*
+#     # summary. 
+#     username = current_user.username
+#     dialogue, summary, docid, model= get_summary_article_for_uid(docid)
+#     summ_sents = list(nlp(summary).sents)
+
+#     dialogue_whole = dialogue
+    
+#     dialogue = [] 
+#     print(dialogue)
+#     if ':' in  dialogue_whole:
+#         for each in dialogue_whole.split('\n'):
+#             dialogue.append((each.split(':')[0], ' '.join(each.split(':')[1:])))
+#     else: 
+#         for each in dialogue_whole.split('\n'):
+#             dialogue.append((each.split(' ')[0], ' '.join(each.split(' ')[1:])))
+#     # print(dialogue)
+#     speaker_list = list(set([each[0] for each in dialogue]))
+#     print(list(set(speaker_list)))
+#     return render_template("annotate.html", username = username, dialogue= dialogue, summary = summary, summ_sents = summ_sents,  docid = docid,  model = model, dialogue_whole = dialogue_whole, speaker_list = speaker_list)

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annotation Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: auto;
+        }
+        .column {
+            padding: 15px;
+        }
+        .column h2 {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #f1f3f4;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+        .default-highlight {
+            background-color: #d3d3d3;
+            border-radius: 3px;
+            padding: 2px 4px;
+            margin: 0 2px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .highlight-category1 {
+            background-color: #ffeb3b;
+            border-radius: 3px;
+            padding: 2px 4px;
+            margin: 0 2px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .highlight-category2 {
+            background-color: #8bc34a;
+            border-radius: 3px;
+            padding: 2px 4px;
+            margin: 0 2px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .highlight-category3 {
+            background-color: #03a9f4;
+            border-radius: 3px;
+            padding: 2px 4px;
+            margin: 0 2px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .form-group {
+            margin-top: 20px;
+        }
+        .rating-form {
+            display: none;
+            margin-top: 10px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 2rem;
+            margin: 0;
+            color: #343a40;
+        }
+        .header a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #007bff;
+        }
+        .header a:hover {
+            text-decoration: underline;
+        }
+
+        .rating-box {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            left: 100%; /* Position to the right of the span */
+            top: 0; /* Align with the top of the span */
+            display: none; /* Initially hide the rating box */
+        }
+
+        .highlight-category1:hover .rating-box,
+        .highlight-category2:hover .rating-box,
+        .highlight-category3:hover .rating-box {
+            display: block; /* Show rating box on hover */
+        }
+
+        .delete-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 12px;
+            background-color: #fff;
+            color: #dc3545;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Annotation Tool</h1>
+            <a href="/">Back to Dashboard</a>
+        </div>
+        <div class="row">
+            <div class="col-md-6 column">
+                <h2>Source</h2>
+                <pre>{{ source }}</pre>
+            </div>
+            <div class="col-md-6 column">
+                <h2>Summary</h2>
+                <pre id="summary" contenteditable="true">
+                    <!-- Display summary text -->
+                    {{ summary }}
+                </pre>
+                <div class="form-group">
+                    <label for="category">Select Category:</label>
+                    <select id="category" class="form-control">
+                        <option value="">Select Category</option>
+                        <option value="category1" style="background-color: #ffeb3b; color: blue;">Mistake</option>
+                        <option value="category2" style="background-color: #8bc34a;">Inference</option>
+                    </select>
+                </div>
+                <input type="hidden" id="docid" value="{{ docid }}">
+                <input type="hidden" id="source" value="{{ source }}">
+                <input type="hidden" id="og_summary" value="{{ summary }}">
+                <input type="hidden" id="model" value="{{ model }}">
+                <input type="hidden" id="origin" value="{{ origin }}">
+                <input type="hidden" id="benchmark_dataset_name" value="{{ benchmark_dataset_name }}">
+
+
+                <div id="ratingForm" class="rating-form" style="display: none;">
+                    <label for="rating" id="ratingLabel">Select Rating</label>
+                    <select id="rating" class="form-control">
+                        <option value="">Select Rating</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <button id="saveRatingMistake" class="btn btn-primary mt-2">Save Rating</button>
+                </div>
+                <div id="additionalRatings" style="display: none;">
+                        <label for="additionalRating1">How likely is someone to make this assumption?</label>
+                        <select id="additionalRating1" class="form-control">
+                            <option value="">Select Rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <label for="additionalRating2">How common is the knowledge used in making this assumption?</label>
+                        <select id="additionalRating2" class="form-control">
+                            <option value="">Select Rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <button id="saveRatingInference" class="btn btn-primary mt-2">Save Rating</button>
+                </div>
+                
+                
+                <button id="finalSubmit" class="btn btn-success mt-3">Submit All Annotations</button>
+                <button id="undoAnnotation" class="btn btn-danger mt-3">Undo Last Annotation</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        let currentSpan = null;
+        let annotations = JSON.parse('{{ annotations | tojson | safe }}');
+        let spanList = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            let summaryElement = document.getElementById('summary');
+            let summaryText = summaryElement.textContent.trim();
+
+            annotations.forEach(annotation => {
+                let startIndex = summaryText.indexOf(annotation.nonfactual_span);
+                if (startIndex !== -1) {
+                    let endIndex = startIndex + annotation.nonfactual_span.length;
+                    let span = document.createElement('span');
+                    span.textContent = annotation.nonfactual_span;
+                    span.className = '' + annotation.error_type;
+                    
+                    span.setAttribute('data-rating', annotation.mistake_severity);
+                    span.setAttribute('data-additional-rating1', annotation.inference_likelihood);
+                    span.setAttribute('data-additional-rating2', annotation.inference_knowledge);
+
+                    summaryText = summaryText.substring(0, startIndex) +
+                                  `<span class="${annotation.error_type}" data-rating="${annotation.mistake_severity}" data-additional-rating1="${annotation.inference_likelihood}" data-additional-rating2="${annotation.inference_knowledge}">${annotation.nonfactual_span}</span>` +
+                                  summaryText.substring(endIndex);
+                }
+            });
+
+            summaryElement.innerHTML = summaryText;
+            function showRatings(span) {
+                let ratingBox = span.querySelector('.rating-box');
+                if (ratingBox) {
+                    let rating = span.getAttribute('data-rating');
+                    let additionalRating1 = span.getAttribute('data-additional-rating1');
+                    let additionalRating2 = span.getAttribute('data-additional-rating2');
+                    let ratingText = '';
+                    // alert(`Clicked Span Content:\n${rating}`);
+                    if (rating !== null) {
+                        ratingText += `Mistake Severity: ${rating}`;
+                    }
+                    if (additionalRating1) {
+                        ratingText += `\nLikelihood: ${additionalRating1}`;
+                    }
+                    if (additionalRating2) {
+                        ratingText += `\nCommon Knowledge: ${additionalRating2}`;
+                    }
+
+                    ratingBox.textContent = ratingText;
+                    ratingBox.style.display = 'block';
+                }
+            }
+
+            let highlightedSpans = document.querySelectorAll('.highlight-category1, .highlight-category2, .highlight-category3');
+            highlightedSpans.forEach(span => {
+                let ratingBox = document.createElement('div');
+                ratingBox.className = 'rating-box';
+                span.appendChild(ratingBox);
+
+                span.addEventListener('mouseenter', function(event) {
+                    showRatings(span);
+                });
+
+                span.addEventListener('mouseleave', function(event) {
+                    let ratingBox = span.querySelector('.rating-box');
+                    if (ratingBox) {
+                        ratingBox.style.display = 'none';
+                    }
+                });
+            });
+            
+
+            summaryElement.addEventListener('mouseup', function(event) {
+                let selectedText = window.getSelection().toString().trim();
+                if (selectedText.length > 0) {
+                    let category = document.getElementById('category').value;
+                    if (!category) {
+                        alert('Please select a category first.');
+                        return;
+                    }
+
+                    let span = document.createElement('span');
+                    span.textContent = selectedText;
+                    span.className = `highlight-${category}`;
+                    // span.classList.add('default-highlight');
+                    // span.classList.add(`highlight-${category}`);
+                    // span.addEventListener('click', function() {
+                    //     currentSpan = span;
+                    //     // document.getElementById('ratingForm').style.display = 'block';
+                    //     let ratingForm = document.getElementById('ratingForm')
+                    //     let ratingLabel = document.getElementById('ratingLabel');
+                    //     let additionalRatings = document.getElementById('additionalRatings');
+                    //     if (category === 'category1') {
+                    //         ratingForm.style.display = 'block'
+                    //         ratingLabel.textContent = 'How severe is the mistake?';
+                    //         additionalRatings.style.display = 'none';
+                    //     } else if (category === 'category2') {
+                    //         ratingForm.style.display = 'none'
+                    //         // ratingLabel.textContent = 'How likely is someone to make this assumption?';
+                    //         additionalRatings.style.display = 'block';
+                    //     }
+                    // });
+
+                    let range = window.getSelection().getRangeAt(0);
+                    range.deleteContents();
+                    range.insertNode(span);
+
+                    currentSpan = span;
+                    let ratingForm = document.getElementById('ratingForm')
+                    let ratingLabel = document.getElementById('ratingLabel');
+                    let additionalRatings = document.getElementById('additionalRatings');
+                    if (category === 'category1') {
+                        ratingForm.style.display = 'block'
+                        ratingLabel.textContent = 'How severe is the mistake?';
+                        additionalRatings.style.display = 'none';
+                    } else if (category === 'category2') {
+                        ratingForm.style.display = 'none'
+                        ratingLabel.textContent = 'How likely is someone to make this assumption?';
+                        additionalRatings.style.display = 'block';
+                    }
+                }
+            });
+
+            document.getElementById('saveRatingMistake').addEventListener('click', function() {
+                let rating = document.getElementById('rating').value;
+                
+                if (currentSpan.classList.contains('highlight-category1')) {
+                    if (!rating) {
+                        alert('Please select a rating.');
+                        return;
+                    }
+                    currentSpan.setAttribute('data-rating', rating);
+                }
+                
+                // let ratingBox = document.createElement('div');
+                // ratingBox.className = 'rating-box';
+                // ratingBox.textContent = `Rating: ${rating}`;
+                
+                
+                // currentSpan.appendChild(ratingBox);
+
+                spanList.push(currentSpan);
+                currentSpan = null;
+                document.getElementById('ratingForm').style.display = 'none';
+                document.getElementById('rating').value = '';
+            });
+
+            document.getElementById('saveRatingInference').addEventListener('click', function() {
+                let additionalRating1 = document.getElementById('additionalRating1').value;
+                let additionalRating2 = document.getElementById('additionalRating2').value;
+                // alert(JSON.stringify(currentSpan));
+                
+                if (currentSpan.classList.contains('highlight-category2')) {
+                    if (!additionalRating1 || !additionalRating2) {
+                        alert('Please select all additional ratings.');
+                        return;
+                    }
+                    
+                    currentSpan.setAttribute('data-additional-rating1', additionalRating1);
+                    currentSpan.setAttribute('data-additional-rating2', additionalRating2);
+                }
+
+                // let ratingBox = document.createElement('div');
+                // ratingBox.className = 'rating-box';
+                // ratingBox.textContent += `Likelihood: ${additionalRating1}`;
+                // ratingBox.textContent += `Common Knowledge: ${additionalRating2}`;
+                
+                // currentSpan.appendChild(ratingBox);
+
+                spanList.push(currentSpan);
+                currentSpan = null;
+                // alert(JSON.stringify(currentSpan));
+                document.getElementById('additionalRatings').style.display = 'none';
+                document.getElementById('additionalRating1').value = '';
+                document.getElementById('additionalRating2').value = '';
+            });
+
+
+            // document.getElementById('saveRating').addEventListener('click', function() {
+            //     let rating = document.getElementById('rating').value;
+            //     let additionalRating1 = document.getElementById('additionalRating1').value;
+            //     let additionalRating2 = document.getElementById('additionalRating2').value;
+            //     alert(JSON.stringify(currentSpan));
+            //     if (currentSpan.classList.contains('highlight-category1')) {
+            //         if (!rating) {
+            //             alert('Please select a rating.');
+            //             return;
+            //         }
+            //         currentSpan.setAttribute('data-rating', rating);
+            //     }
+            //     else if (currentSpan.classList.contains('highlight-category2')) {
+            //         if (!additionalRating1 || !additionalRating2) {
+            //             alert('Please select all additional ratings.');
+            //             return;
+            //         }
+                    
+            //         currentSpan.setAttribute('data-additional-rating1', additionalRating1);
+            //         currentSpan.setAttribute('data-additional-rating2', additionalRating2);
+            //     }
+
+            //     let ratingBox = document.createElement('div');
+            //     ratingBox.className = 'rating-box';
+            //     if (rating){
+            //         ratingBox.textContent = `Rating: ${rating}`;}
+            //     if (additionalRating1) {
+            //         ratingBox.textContent += `, Likelihood: ${additionalRating1}`;
+            //     }
+            //     if (additionalRating2) {
+            //         ratingBox.textContent += `, Common Knowledge: ${additionalRating2}`;
+            //     }
+            //     currentSpan.appendChild(ratingBox);
+
+            //     spanList.push(currentSpan);
+            //     currentSpan = null;
+            //     document.getElementById('ratingForm').style.display = 'none';
+            //     document.getElementById('additionalRatings').style.display = 'none';
+            //     document.getElementById('rating').value = '';
+            //     document.getElementById('additionalRating1').value = '';
+            //     document.getElementById('additionalRating2').value = '';
+            // });
+
+            document.getElementById('undoAnnotation').addEventListener('click', function() {
+                if (spanList.length > 0) {
+                    let lastSpan = spanList.pop();
+                    let parent = lastSpan.parentNode;
+                    parent.replaceChild(document.createTextNode(lastSpan.textContent), lastSpan);
+                    document.getElementById('ratingForm').style.display = 'none';
+                    currentSpan = null;
+                }
+            });
+
+            document.getElementById('finalSubmit').addEventListener('click', function() {
+                // let finalAnnotations = [];
+                // alert(JSON.stringify(spanList))
+                spanList.forEach(span => {
+                    let annotation = {
+                        nonfactual_span: span.textContent,
+                        error_type: span.className,
+                        mistake_severity: span.getAttribute('data-rating'),
+                        inference_likelihood: span.getAttribute('data-additional-rating1'),
+                        inference_knowledge: span.getAttribute('data-additional-rating2')
+                    };
+                    annotations.push(annotation);
+                });
+
+                let data = {
+                    docid: document.getElementById('docid').value,
+                    source: document.getElementById('source').value,
+                    summary: document.getElementById('summary').textContent.trim(),
+                    model: document.getElementById('model').value,
+                    origin: document.getElementById('origin').value,
+                    benchmark_dataset_name: document.getElementById('benchmark_dataset_name').value,
+                    annotations: annotations
+                };
+
+                // Submit the data to your server (example with fetch API)
+                fetch('/save_annotations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }).then(response => {
+                    if (response.ok) {
+                        alert('Annotations submitted successfully!');
+                    } else {
+                        alert('Failed to submit annotations.');
+                    }
+                }).catch(error => {
+                    console.error('Error submitting annotations:', error);
+                    alert('An error occurred while submitting annotations.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
