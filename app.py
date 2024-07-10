@@ -207,8 +207,7 @@ def save_annotations():
             print(f"Deleted existing")
         # Insert annotations into the label table
         # with db_engine.connect() as connection:
-        for annotation in data['annotations']:
-            print("Annotation received:", annotation)
+        if not data['annotations']:
             try:
                 stmt = label.insert().values(
                     user_id=username,
@@ -218,17 +217,41 @@ def save_annotations():
                     model=data['model'],
                     benchmark_dataset_name=data['benchmark_dataset_name'],
                     origin=data['origin'],
-                    nonfactual_span=annotation['nonfactual_span'],
-                    error_type=annotation['error_type'],
-                    mistake_severity=annotation['mistake_severity'],
-                    inference_likelihood=annotation['inference_likelihood'],
-                    inference_knowledge=annotation['inference_knowledge'],
+                    nonfactual_span=None,
+                    error_type=None,
+                    mistake_severity=None,
+                    inference_likelihood=None,
+                    inference_knowledge=None,
                     attempt_number = 1
 
                 )
                 connection.execute(stmt)
             except KeyError as e:
                 print(f"KeyError: Missing key {e} in annotation {annotation}")
+
+        else:
+            for annotation in data['annotations']:
+                print("Annotation received:", annotation)
+                try:
+                    stmt = label.insert().values(
+                        user_id=username,
+                        docid=data['docid'],
+                        source=data['source'],
+                        summary=data['summary'],
+                        model=data['model'],
+                        benchmark_dataset_name=data['benchmark_dataset_name'],
+                        origin=data['origin'],
+                        nonfactual_span=annotation['nonfactual_span'],
+                        error_type=annotation['error_type'],
+                        mistake_severity=annotation['mistake_severity'],
+                        inference_likelihood=annotation['inference_likelihood'],
+                        inference_knowledge=annotation['inference_knowledge'],
+                        attempt_number = 1
+
+                    )
+                    connection.execute(stmt)
+                except KeyError as e:
+                    print(f"KeyError: Missing key {e} in annotation {annotation}")
 
     return jsonify({"success": True})
 
