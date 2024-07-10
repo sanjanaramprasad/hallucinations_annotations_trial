@@ -260,6 +260,7 @@
                 span.addEventListener('mouseleave', function(event) {
                     let ratingBox = span.querySelector('.rating-box');
                     if (ratingBox) {
+                        ratingBox.textContent = '';
                         ratingBox.style.display = 'none';
                     }
                 });
@@ -416,13 +417,17 @@
             // });
 
             document.getElementById('undoAnnotation').addEventListener('click', function() {
-                if (spanList.length > 0) {
-                    let lastSpan = spanList.pop();
-                    let parent = lastSpan.parentNode;
-                    parent.replaceChild(document.createTextNode(lastSpan.textContent), lastSpan);
-                    document.getElementById('ratingForm').style.display = 'none';
-                    currentSpan = null;
-                }
+                annotations = []; // Reset the annotations array to empty
+                spanList = []; // Clear the spanList array
+                let spans = document.querySelectorAll('.highlight-category1, .highlight-category2, .highlight-category3');
+                spans.forEach(span => {
+                    let parent = span.parentNode;
+                    parent.replaceChild(document.createTextNode(span.textContent), span);
+                });
+                document.getElementById('ratingForm').style.display = 'none';
+                document.getElementById('additionalRatings').style.display = 'none';
+                currentSpan = null;
+
             });
 
             document.getElementById('finalSubmit').addEventListener('click', function() {
