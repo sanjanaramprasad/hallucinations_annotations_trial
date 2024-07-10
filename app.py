@@ -154,7 +154,7 @@ def annotate_action():
         label_table = metadata.tables['label']
         query_annotations = sqlalchemy.select([label_table]).where(
                                 and_(
-                                    model_summaries.c.docid == selected_id,
+                                    label_table.c.docid == selected_id,
                                     label_table.c.user_id == username
                                 )
                             )
