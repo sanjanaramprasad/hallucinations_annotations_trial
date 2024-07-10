@@ -100,8 +100,14 @@ def next():
     query = select([model_summaries.c.docid])
     result = connection.execute(query)
     ids = [row[0] for row in result]
+
+    label_table = metadata.tables['label']
+    query_annotated_ids = select([label_table.c.docid]).where(label_table.c.user_id == username).distinct()
+    result_annotated_ids = connection.execute(query_annotated_ids)
+    annotated_ids = {row[0] for row in result_annotated_ids}
+
     connection.close()
-    return render_template('annotate.html', ids=ids)
+    return render_template('annotate.html', ids=ids, annotated_ids=annotated_ids)
 
 # @application.route('/annotate_action', methods=['POST'])
 # @login_required

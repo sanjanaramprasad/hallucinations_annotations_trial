@@ -20,6 +20,10 @@
         .form-group label {
             font-weight: bold;
         }
+        .check-icon {
+            color: green;
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
@@ -30,7 +34,12 @@
                 <label for="id_select">Select an ID to annotate:</label>
                 <select class="form-control" name="id" id="id_select">
                     {% for id in ids %}
-                        <option value="{{ id }}">{{ id }}</option>
+                        <option value="{{ id }}">
+                            {{ id }}
+                            {% if id in annotated_ids %}
+                                <span class="check-icon">&#10004;</span>
+                            {% endif %}
+                        </option>
                     {% endfor %}
                 </select>
             </div>
