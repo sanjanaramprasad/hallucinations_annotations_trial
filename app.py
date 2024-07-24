@@ -7,7 +7,7 @@ import re
 import sqlalchemy
 from sqlalchemy import text, create_engine, Index, MetaData, Table, select, exists
 from sqlalchemy.sql import and_
-
+from nltk.tokenize import sent_tokenize
 from random import shuffle
 from flask import Flask, render_template, redirect, url_for, request
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
@@ -61,6 +61,7 @@ def get_users():
         "sanjana": User(1, "sanjana", "sanjana"),
         "elisa": User(2, "elisa", "elisa"),
         "pranav": User(3, "pranav", "pranav"),
+        "rachel_usher": User(4, "rachel_usher", "rachel_usher")
     }
     return users
 
@@ -170,7 +171,11 @@ def annotate_action():
             annotations.append(annotation)
         # annotations = str(annotations)
         print('ANN', annotations, type(annotations))
-    return render_template('annotation_detail.html',
+        source_sentences = sent_tokenize(source)
+        source_sentences = [each.capitalize() for each in source_sentences]
+        source = "\n".join(source_sentences).strip()
+        print(source)
+        return render_template('annotation_detail.html',
                            source=source,
                            summary=summary,
                            model=model,

@@ -161,33 +161,34 @@
                     <label for="rating" id="ratingLabel">Select Rating</label>
                     <select id="rating" class="form-control">
                         <option value="">Select Rating</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
+                        <option value="severe">severe</option>
+                        <option value="somewhat_severe">somewhat severe</option>
+                        <option value="not_severe">not severe</option>
                     </select>
                     <button id="saveRatingMistake" class="btn btn-primary mt-2">Save Rating</button>
                 </div>
                 <div id="additionalRatings" style="display: none;">
-                        <label for="additionalRating1">How likely is someone to make this assumption?</label>
+                        <label for="additionalRating1">How likely is the inference?</label>
                         <select id="additionalRating1" class="form-control">
                             <option value="">Select Rating</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option value="obvious">obvious</option>
+                            <option value="likely">likely</option>
+                            <option value="somewhat_likely">somewhat likely</option>
+                            <option value="not_likely">not likely</option>
                         </select>
-                        <label for="additionalRating2">How common is the knowledge used in making this assumption?</label>
+                        <label for="additionalRating2">How common is the knowledge used in making this inference?</label>
                         <select id="additionalRating2" class="form-control">
                             <option value="">Select Rating</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option value="common">common</option>
+                            <option value="somewhat common">somewhat common</option>
+                            <option value="not common">not common</option>
                         </select>
                         <button id="saveRatingInference" class="btn btn-primary mt-2">Save Rating</button>
                 </div>
                 
                 
-                <button id="finalSubmit" class="btn btn-success mt-3">Submit All Annotations</button>
-                <button id="undoAnnotation" class="btn btn-danger mt-3">Undo Last Annotation</button>
+                <button id="finalSubmit" class="btn btn-success mt-3">Submit</button>
+                <button id="undoAnnotation" class="btn btn-danger mt-3">Undo All Annotation</button>
             </div>
         </div>
     </div>
@@ -260,6 +261,7 @@
                 span.addEventListener('mouseleave', function(event) {
                     let ratingBox = span.querySelector('.rating-box');
                     if (ratingBox) {
+                        ratingBox.textContent = '';
                         ratingBox.style.display = 'none';
                     }
                 });
@@ -416,13 +418,17 @@
             // });
 
             document.getElementById('undoAnnotation').addEventListener('click', function() {
-                if (spanList.length > 0) {
-                    let lastSpan = spanList.pop();
-                    let parent = lastSpan.parentNode;
-                    parent.replaceChild(document.createTextNode(lastSpan.textContent), lastSpan);
-                    document.getElementById('ratingForm').style.display = 'none';
-                    currentSpan = null;
-                }
+                annotations = []; // Reset the annotations array to empty
+                spanList = []; // Clear the spanList array
+                let spans = document.querySelectorAll('.highlight-category1, .highlight-category2, .highlight-category3');
+                spans.forEach(span => {
+                    let parent = span.parentNode;
+                    parent.replaceChild(document.createTextNode(span.textContent), span);
+                });
+                document.getElementById('ratingForm').style.display = 'none';
+                document.getElementById('additionalRatings').style.display = 'none';
+                currentSpan = null;
+
             });
 
             document.getElementById('finalSubmit').addEventListener('click', function() {
