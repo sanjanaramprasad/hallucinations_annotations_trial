@@ -15,6 +15,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import math
 import spacy
 import os
+import nltk
+nltk.download('punkt')
 nlp = spacy.load('en_core_web_sm')
 
 application = Flask(__name__)
