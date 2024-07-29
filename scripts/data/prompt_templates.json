@@ -1,0 +1,4 @@
+{
+    "prompt_template": "{instruction}\nDocument:{source}\nSummary:",
+    "probe_prompt_template": "{instruction}\nDocument:{document}"
+}
