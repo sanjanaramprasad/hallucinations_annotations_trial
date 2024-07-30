@@ -3,7 +3,7 @@ import re
 
 model_map = {
  'llama7b': 'llama_2_7b_chat_hf',
- 'llama3_8b': 'llama3-8B-HF'
+ 'llama3_8b': 'llama3-8B-Instruct-HF'
 } 
 
 
@@ -40,10 +40,11 @@ class ModelPrompt:
         # print('**'* 13)
         inputs = self.tokenizer(prompt, return_tensors="pt")
         # self.
-        gen_len = inputs['input_ids'].shape[-1] + 1500
+        gen_len = inputs['input_ids'].shape[-1] + 500
         generate_ids = self.model.generate(inputs.input_ids.to('cuda'), max_length=gen_len)
         generate_ids = generate_ids[0][inputs['input_ids'].shape[-1]:]
         # print(summary_ids)
         generated_text = self.tokenizer.decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
         # print(generated_text)
+        # print('***'*13)
         return generated_text
