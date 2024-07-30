@@ -175,17 +175,15 @@
                         <label for="additionalRating1">How likely is the inference?</label>
                         <select id="additionalRating1" class="form-control">
                             <option value="">Select Rating</option>
-                            <option value="obvious">obvious</option>
-                            <option value="likely">likely</option>
-                            <option value="somewhat_likely">somewhat likely</option>
-                            <option value="not_likely">not likely</option>
+                            <option value="obvious">obvious (only valid interpretation)</option>
+                            <option value="likely">likely (other interpretations could be valid)</option>
+                            <option value="not_likely">not likely (an invalid interpretation)</option>
                         </select>
                         <label for="additionalRating2">How common is the knowledge used in making this inference?</label>
                         <select id="additionalRating2" class="form-control">
                             <option value="">Select Rating</option>
-                            <option value="common">common</option>
-                            <option value="somewhat common">somewhat common</option>
-                            <option value="not common">not common</option>
+                            <option value="common">common </option>
+                            <option value="not common">not common </option>
                         </select>
                         <button id="saveRatingInference" class="btn btn-primary mt-2">Save Rating</button>
                 </div>
