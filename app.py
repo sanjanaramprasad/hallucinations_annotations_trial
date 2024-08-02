@@ -28,7 +28,7 @@ metadata = MetaData(bind=db_engine)
 metadata.reflect()
 print(metadata)
 model_summaries = metadata.tables['model_summaries']
-label = metadata.tables['label']
+label = metadata.tables['modified_label']
 
 n_labels_per_doc = 6
 n_docs = 5
@@ -104,7 +104,7 @@ def next():
     result = connection.execute(query)
     ids = [row[0] for row in result]
 
-    label_table = metadata.tables['label']
+    label_table = metadata.tables['modified_label']
     query_annotated_ids = select([label_table.c.docid]).where(label_table.c.user_id == username).distinct()
     result_annotated_ids = connection.execute(query_annotated_ids)
     annotated_ids = {row[0] for row in result_annotated_ids}
@@ -154,7 +154,7 @@ def annotate_action():
         benchmark_dataset_name = result['benchmark_dataset_name']
 
         # Fetch existing annotations for the selected ID
-        label_table = metadata.tables['label']
+        label_table = metadata.tables['modified_label']
         query_annotations = sqlalchemy.select([label_table]).where(
                                 and_(
                                     label_table.c.docid == selected_id,
@@ -168,7 +168,8 @@ def annotate_action():
                 'error_type': row['error_type'],
                 'mistake_severity': row['mistake_severity'],
                 'inference_likelihood': row['inference_likelihood'],
-                'inference_knowledge': row['inference_knowledge']
+                'inference_knowledge': row['inference_knowledge'],
+                'inference_severity': row['inference_severity']
             }
             annotations.append(annotation)
         # annotations = str(annotations)
@@ -194,7 +195,7 @@ def save_annotations():
     username = current_user.username
     print("Data received:", data)
     with db_engine.connect() as connection:
-        label_table = metadata.tables['label']
+        label_table = metadata.tables['modified_label']
         query_annotated = sqlalchemy.select([label_table]).where(
                                 and_(
                                     model_summaries.c.docid == data['docid'],
@@ -229,6 +230,7 @@ def save_annotations():
                     mistake_severity=None,
                     inference_likelihood=None,
                     inference_knowledge=None,
+                    inference_severity=None,
                     attempt_number = 1
 
                 )
@@ -253,6 +255,7 @@ def save_annotations():
                         mistake_severity=annotation['mistake_severity'],
                         inference_likelihood=annotation['inference_likelihood'],
                         inference_knowledge=annotation['inference_knowledge'],
+                        inference_severity=annotation['inference_severity'],
                         attempt_number = 1
 
                     )
