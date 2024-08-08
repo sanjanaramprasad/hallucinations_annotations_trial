@@ -22,7 +22,7 @@ nlp = spacy.load('en_core_web_sm')
 application = Flask(__name__)
 application.secret_key = 'super_secret_key' 
 
-db_engine = sqlalchemy.create_engine('postgresql://u38ot3voqlb8of:p9ee14081ae1d13ffb707b10ddc331c8191f057d2be74b53921911da9e426ca4c@cd3vj4tb0qabuf.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/dgks84evs3khk')
+db_engine = sqlalchemy.create_engine('postgresql://u16ifm924gr2m8:pe4029f0ba1fbaafd034f4dbf17f703bf9a5d6c8420f07719f5db4054c9d4da40@c1gvrf2q90nbcq.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d65103c5a2kbgs')
 
 metadata = MetaData(bind=db_engine)
 metadata.reflect()
