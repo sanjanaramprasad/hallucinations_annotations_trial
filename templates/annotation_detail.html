@@ -161,15 +161,16 @@
                 <input type="hidden" id="benchmark_dataset_name" value="{{ benchmark_dataset_name }}">
 
                 <div id="evidenceForm" class="evidence-form" style="display: none;">
-                    <label for="evidence" id="evidenceLabel">Is there direct evidence in the source that contradicts the unsupported/partially supported span?</label>
+                    <label for="evidence" id="evidenceLabel">Is there information in the source that contradicts the unsupported/partially supported span?</label>
                     <select id="evidence" class="form-control">
                         <option value="">Select Answer</option>
-                        <option value="yes">yes</option>
+                        <option value="yes">yes (explicit/direct contradiction)</option>
+                        <option value="yes">somewhat (implicit/indirect contradiction)</option>
                         <option value="no">no</option>
                     </select>
                 </div>
 
-                <div id="ratingForm" class="rating-form" style="display: none;">
+                <!-- <div id="ratingForm" class="rating-form" style="display: none;">
                     <label for="rating" id="ratingLabel">Select Rating</label>
                     <select id="rating" class="form-control">
                         <option value="">Select Rating</option>
@@ -178,26 +179,28 @@
                         <option value="not_severe">not severe</option>
                     </select>
                     <button id="saveRatingMistake" class="btn btn-primary mt-2">Save Rating</button>
-                </div>
+                </div> -->
                 <div id="additionalRatings" style="display: none;">
-                        <label for="additionalRating1">Would you arrive at a similar interpretation? </label>
+                        <label for="additionalRating1">Based on contextual information in the source, would you arrive at a similar interpretation? </label>
                         <select id="additionalRating1" class="form-control">
                             <option value="">Select Rating</option>
                             <option value="obvious">Yes (this is the most reasonable interpretation)</option>
                             <option value="likely">Maybe (other interpretations could also be valid)</option>
                             <option value="not_likely">No (I believe other interpretations are more reasonable.)</option>
                         </select>
-                        <label for="additionalRating2">How common is the knowledge used in making or correcting this inference?</label>
+                        <label for="additionalRating2">Is the knowledge you used common? Could you rely on general understanding or common sense?</label>
                         <select id="additionalRating2" class="form-control">
                             <option value="">Select Rating</option>
-                            <option value="common">common </option>
-                            <option value="not common">not common </option>
+                            <option value="common">Yes (entirely based on common sense) </option>
+                            <option value="somewhat_common">Somewhat (mostly common sense with some specific knowledge) </option>
+                            <option value="no">No (requires specialized knowledge) </option>
                         </select>
-                        <label for="additionalRating3"> How would you rate the potential consequences of this hallucination if it were believed to be true?</label>
+                        <label for="additionalRating3"> How significant could the consequences be if this interpretation were accepted as true?</label>
                         <select id="additionalRating3" class="form-control">
                             <option value="">Select Rating</option>
-                            <option value="consequential"> consequential </option>
-                            <option value="not consequential">not consequential </option>
+                            <option value="high_consequence"> High (could be misleading or harmful) </option>
+                            <option value="moderate_consequence">Moderate (some potential for misunderstanding )</option>
+                            <option value="low_consequence">Low (unlikely to be misleading or cause harm ) </option>
                         </select>
                         <button id="saveRatingInference" class="btn btn-primary mt-2">Save Rating</button>
                 </div>
@@ -231,7 +234,7 @@
                 if (startIndex !== -1) {
                     let endIndex = startIndex + annotation.nonfactual_span.length;
                     summaryText = summaryText.substring(0, startIndex) +
-                        `<span class="${annotation.error_type}" data-rating="${annotation.mistake_severity}" data-additional-rating1="${annotation.inference_likelihood}" data-additional-rating2="${annotation.inference_knowledge}" data-additional-rating3="${annotation.inference_severity}">${annotation.nonfactual_span}</span>` +
+                        `<span class="${annotation.error_type}" data-additional-rating1="${annotation.inference_likelihood}" data-additional-rating2="${annotation.inference_knowledge}" data-additional-rating3="${annotation.inference_severity}">${annotation.nonfactual_span}</span>` +
                         summaryText.substring(endIndex);
                 }
             });
@@ -240,7 +243,7 @@
         }
 
         function attachSpanEventListeners() {
-            const highlightedSpans = document.querySelectorAll('.highlight-mistake, .highlight-inference, .highlight-category3');
+            const highlightedSpans = document.querySelectorAll('.highlight-mistake, .highlight-inference');
             highlightedSpans.forEach(span => {
                 let ratingBox = document.createElement('div');
                 ratingBox.className = 'rating-box';
@@ -263,15 +266,13 @@
         function showRatings(span) {
             let ratingBox = span.querySelector('.rating-box');
             if (ratingBox) {
-                let rating = span.getAttribute('data-rating');
+                // let rating = span.getAttribute('data-rating');
                 let additionalRating1 = span.getAttribute('data-additional-rating1');
                 let additionalRating2 = span.getAttribute('data-additional-rating2');
                 let additionalRating3 = span.getAttribute('data-additional-rating3');
                 let ratingText = span.className;
 
-                if (rating && rating !== 'null') {
-                    ratingText += `\nMistake Severity: ${rating}`;
-                }
+                
                 if (additionalRating1 && additionalRating1 !== 'null') {
                     ratingText += `\nLikelihood: ${additionalRating1}`;
                 }
@@ -294,12 +295,12 @@
                 span.textContent = selectedText;
 
                 let evidenceForm = document.getElementById('evidenceForm');
-                let ratingForm = document.getElementById('ratingForm');
-                let ratingLabel = document.getElementById('ratingLabel');
+                // let ratingForm = document.getElementById('ratingForm');
+                // let ratingLabel = document.getElementById('ratingLabel');
                 let additionalRatings = document.getElementById('additionalRatings');
 
                 evidenceForm.style.display = 'block';
-                ratingForm.style.display = 'none';
+                // ratingForm.style.display = 'none';
                 additionalRatings.style.display = 'none';
 
                 let range = window.getSelection().getRangeAt(0);
@@ -313,46 +314,49 @@
         document.getElementById('evidence').addEventListener('change', function() {
             let evidenceValue = this.value;
             let category = evidenceValue === 'yes' ? 'mistake' : 'inference';
+            // let category = 'inference';
 
             if (currentSpan) {
                 currentSpan.className = `highlight-${category}`;
-                if (category === 'mistake') {
+                // document.getElementById('ratingForm').style.display = 'none';
+                document.getElementById('additionalRatings').style.display = 'block';
+                // if (category === 'mistake') {
                     
-                    document.getElementById('ratingForm').style.display = 'block';
-                    document.getElementById('ratingLabel').textContent = 'How severe is the mistake?';
-                    document.getElementById('additionalRatings').style.display = 'none';
-                } else if (category === 'inference') {
-                    document.getElementById('ratingForm').style.display = 'none';
-                    document.getElementById('additionalRatings').style.display = 'block';
-                }
+                //     document.getElementById('ratingForm').style.display = 'block';
+                //     document.getElementById('ratingLabel').textContent = 'How severe is the mistake?';
+                //     document.getElementById('additionalRatings').style.display = 'none';
+                // } else if (category === 'inference') {
+                //     document.getElementById('ratingForm').style.display = 'none';
+                //     document.getElementById('additionalRatings').style.display = 'block';
+                // }
             }
         });
 
-        document.getElementById('saveRatingMistake').addEventListener('click', function() {
-            let rating = document.getElementById('rating').value;
+        // document.getElementById('saveRatingMistake').addEventListener('click', function() {
+        //     let rating = document.getElementById('rating').value;
 
-            if (currentSpan && currentSpan.classList.contains('highlight-mistake')) {
-                if (!rating) {
-                    alert('Please select a rating.');
-                    return;
-                }
-                currentSpan.setAttribute('data-rating', rating);
-                spanList.push(currentSpan);
-                currentSpan = null;
-                document.getElementById('evidenceForm').style.display = 'none';
-                document.getElementById('evidence').value = '';
-                document.getElementById('ratingForm').style.display = 'none';
-                document.getElementById('rating').value = '';
+        //     if (currentSpan && currentSpan.classList.contains('highlight-mistake')) {
+        //         if (!rating) {
+        //             alert('Please select a rating.');
+        //             return;
+        //         }
+        //         currentSpan.setAttribute('data-rating', rating);
+        //         spanList.push(currentSpan);
+        //         currentSpan = null;
+        //         document.getElementById('evidenceForm').style.display = 'none';
+        //         document.getElementById('evidence').value = '';
+        //         document.getElementById('ratingForm').style.display = 'none';
+        //         document.getElementById('rating').value = '';
                 
-            }
-        });
+        //     }
+        // });
 
         document.getElementById('saveRatingInference').addEventListener('click', function() {
             let additionalRating1 = document.getElementById('additionalRating1').value;
             let additionalRating2 = document.getElementById('additionalRating2').value;
             let additionalRating3 = document.getElementById('additionalRating3').value;
 
-            if (currentSpan && currentSpan.classList.contains('highlight-inference')) {
+            if (currentSpan) {
                 if (!additionalRating1 || !additionalRating2 || !additionalRating3) {
                     alert('Please select all additional ratings.');
                     return;
@@ -375,12 +379,12 @@
         document.getElementById('undoAnnotation').addEventListener('click', function() {
             annotations = [];
             spanList = [];
-            let spans = document.querySelectorAll('.highlight-mistake, .highlight-inference, .highlight-category3');
+            let spans = document.querySelectorAll('.highlight-mistake, .highlight-inference,');
             spans.forEach(span => {
                 let parent = span.parentNode;
                 parent.replaceChild(document.createTextNode(span.textContent), span);
             });
-            document.getElementById('ratingForm').style.display = 'none';
+            // document.getElementById('ratingForm').style.display = 'none';
             document.getElementById('additionalRatings').style.display = 'none';
             currentSpan = null;
             updateSummaryText();
