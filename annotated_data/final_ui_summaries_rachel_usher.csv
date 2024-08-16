@@ -1,0 +1,615 @@
+,uuid,user_id,docid,source,summary,model,benchmark_dataset_name,origin,nonfactual_span,error_type,mistake_severity,inference_likelihood,inference_knowledge,inference_severity,attempt_number
+0,2fe36980-f8fd-405c-bf6b-0f19c4763ddb,sanjana,Rachel Usher#REDDIT-83:llama70b-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","A high school student was waiting for his girlfriend outside the locker rooms after her fencing practice, but ended up missing his bus. He is now walking 6 miles home in freezing temperatures without proper winter gear.",llama70b,genaudit,REDDIT,high school student,highlight-mistake,severe,,,,1
+1,51e68797-4a42-4af6-b31c-1535d4d61d74,sanjana,Rachel Usher#REDDIT-83:llama70b-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","A high school student was waiting for his girlfriend outside the locker rooms after her fencing practice, but ended up missing his bus. He is now walking 6 miles home in freezing temperatures without proper winter gear.",llama70b,genaudit,REDDIT,fencing practice,highlight-mistake,severe,,,,1
+2,e6a644ce-c66d-47a1-a6b6-1d104e78e0c0,sanjana,Rachel Usher#REDDIT-83:llama70b-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","A high school student was waiting for his girlfriend outside the locker rooms after her fencing practice, but ended up missing his bus. He is now walking 6 miles home in freezing temperatures without proper winter gear.",llama70b,genaudit,REDDIT,freezing temperatures,highlight-inference,,obvious,common,consequential,1
+3,61bed0b8-8ff1-41e1-aba4-3dd0eda513aa,sanjana,Rachel Usher#REDDIT-83:llama7b-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The writer and their girlfriend are both involved in winter sports at their high school. Today, the writer is late for their bus and doesn't realize that their girlfriend is still in the locker room until she comes out. The writer is left standing outside in the cold and snow without a way to get home, so they start making calls to try to find a ride. However, no one is available to pick them up, leaving the writer to walk home in freezing temperatures.",llama7b,genaudit,REDDIT,writer and their,highlight-mistake,severe,,,,1
+4,c48a2d7d-8c2b-47ad-b455-6e4ca818e0d2,sanjana,Rachel Usher#REDDIT-83:gpt4-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The document narrates a student's experience of participating in a winter sport at their high school. The individual misses their bus home after waiting for their girlfriend, who is also involved in sports, to finish changing after a normal practice day at school. They then realize they have to walk six miles home in freezing temperatures dressed inadequately for the weather, due to the school rule of dressing up for a meet.",gpt4,genaudit,REDDIT,,,,,,,1
+5,aab44905-59cc-4269-92b8-20bc97b06961,sanjana,Rachel Usher#REDDIT-83:mistral7b-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The document describes the experience of a high school student who participates in winter sports with their girlfriend. Today, the student has a late meet and must dress up for it. Meanwhile, their girlfriend has a normal practice that ends at 3:15 PM. The student waits outside the locker rooms to give their girlfriend a goodbye kiss before they leave for their respective activities. However, the student realizes that their bus leaves while they are waiting and they miss it. As a result, the student has to walk six miles in freezing temperatures to get home, wearing only a dress shirt and no gloves or hat. The document ends with the student wishing for luck.",mistral7b,genaudit,REDDIT,document describes,highlight-mistake,severe,,,,1
+6,673305b2-541c-4b03-b675-11729cc70813,sanjana,Rachel Usher#REDDIT-83:mistral7b-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The document describes the experience of a high school student who participates in winter sports with their girlfriend. Today, the student has a late meet and must dress up for it. Meanwhile, their girlfriend has a normal practice that ends at 3:15 PM. The student waits outside the locker rooms to give their girlfriend a goodbye kiss before they leave for their respective activities. However, the student realizes that their bus leaves while they are waiting and they miss it. As a result, the student has to walk six miles in freezing temperatures to get home, wearing only a dress shirt and no gloves or hat. The document ends with the student wishing for luck.",mistral7b,genaudit,REDDIT,he student waits,highlight-inference,,likely,common,not consequential,1
+7,4da54308-4498-4f3e-9bae-65be0b873ed5,elisa,Rachel Usher#REDDIT-83:llama70b-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","A high school student was waiting for his girlfriend outside the locker rooms after her fencing practice, but ended up missing his bus. He is now walking 6 miles home in freezing temperatures without proper winter gear.",llama70b,genaudit,REDDIT,home,highlight-inference,,obvious,common,not consequential,1
+8,99e22136-6be0-4f2f-96d1-086be5f053d0,elisa,Rachel Usher#REDDIT-83:gpt4-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The document narrates a student's experience of participating in a winter sport at their high school. The individual misses their bus home after waiting for their girlfriend, who is also involved in sports, to finish changing after a normal practice day at school. They then realize they have to walk six miles home in freezing temperatures dressed inadequately for the weather,due to the school rule of dressing up for a meet.",gpt4,genaudit,REDDIT,home,highlight-inference,,obvious,common,not consequential,1
+9,cf5a5d2b-0a1b-4c0e-b1a9-0bf0c4441883,elisa,Rachel Usher#REDDIT-83:gpt4-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The document narrates a student's experience of participating in a winter sport at their high school. The individual misses their bus home after waiting for their girlfriend, who is also involved in sports, to finish changing after a normal practice day at school. They then realize they have to walk six miles home in freezing temperatures dressed inadequately for the weather,due to the school rule of dressing up for a meet.",gpt4,genaudit,REDDIT,after,highlight-mistake,not_severe,,,,1
+10,58df3c52-6a0a-489c-8c15-78c788761234,elisa,Rachel Usher#REDDIT-83:gpt4-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The document narrates a student's experience of participating in a winter sport at their high school. The individual misses their bus home after waiting for their girlfriend, who is also involved in sports, to finish changing after a normal practice day at school. They then realize they have to walk six miles home in freezing temperatures dressed inadequately for the weather,due to the school rule of dressing up for a meet.",gpt4,genaudit,REDDIT,due to the school rule of dressing up for a meet.,highlight-mistake,severe,,,,1
+11,220a6403-fe71-4bd5-a7d3-13b8a5e00dd1,elisa,Rachel Usher#REDDIT-54:llama70b-ul2,"I thought my act test was today.
+It was yesterday.
+I spent a total of 30 minutes or so walking around a highschool trying to open every single door.
+I finally checked my test ticket and realized the date said saturday june 13. no wonder no one else was in the parking lot.","A person spent 30 minutes walking around a high school trying to open doors, only to realize that their ACT test was yesterday, not today, and that they had the wrong date on their test ticket.",llama70b,genaudit,REDDIT,wrong date on their test ticket,highlight-mistake,severe,,,,1
+12,92f18024-1b70-49b6-aa4a-6c4b53f30dba,elisa,Rachel Usher#REDDIT-54:gpt4-ul2,"I thought my act test was today.
+It was yesterday.
+I spent a total of 30 minutes or so walking around a highschool trying to open every single door.
+I finally checked my test ticket and realized the date said saturday june 13. no wonder no one else was in the parking lot.","The author mistakenly believed their ACT test was on a certain day and ended up wandering around an empty high school for about half an hour, trying to gain access. They eventually checked their test ticket, realizing the ACT was scheduled for the previous day, which explained the empty parking lot and locked school.",gpt4,genaudit,REDDIT,empty,highlight-inference,,obvious,common,not consequential,1
+13,f6f5f2c0-bbf0-4013-b560-10ba40af2c04,elisa,Rachel Usher#ACIBENCH-D2N097:gpt4-ul2,"[doctor] elizabeth , how are you ?
+[patient] i'm doing okay .
+How are you ?
+[doctor] doing okay .
+So i know the nurse told you about dax .
+I'd like to tell dax a little bit about you , okay ?
+[patient] okay .
+[doctor] all right .
+Elizabeth is a 66-year-old female with a past medical history of significant for depression and hypertension who presents for her annual exam .
+So elizabeth , it's been a year since i've seen you .
+[patient] mm-hmm .
+[doctor] how are you doing ?
+[patient] i'm doing well .
+There's been so many events now that we've been able to get vaccinated , i've been able to see my grandkids again , go to more birthday parties , it's been fantastic .
+[doctor] yeah , i know .
+I've ... i mean , we've had some communication over telehealth and that type of thing , but it's not the same as being in-person , so i'm happy to see you today .
+Now tell me a little bit about , you know , we have n't really got a chance to talk about your depression .
+How are you ... how are you doing with that ?
+I know we have n't had you on medication in the past because you're on medication for other things .
+What are your strategies with dealing with it ?
+[patient] so i've been going to therapy once a week for the past year .
+Um , mostly virtually , um , but starting to get in-person .
+Virtual was a bit of a struggle , but i feel like being in-person with someone really helps me .
+[doctor] okay .
+And do y- do you have a good support system at home ?
+[patient] yes , i do .
+I have my husband and , uh , my kids are right down the street from me , so i'm very lucky .
+[doctor] okay .
+All right .
+So that's good to hear .
+[doctor] how about your blood pressure ?
+Did you buy the blood pressure cuff that i- [patient] yes .
+[doctor] .
+Told you to ?
+Okay .
+I know that we've been in communication and your blood pressures have been running okay .
+The last time i spoke with you , how are they doing since we last spoke ?
+[patient] they've been doing well .
+I've been using the cuff , um , once a day , and they seem pretty normal .
+[doctor] okay .
+And are you taking the lisinopril that i prescribed ?
+[patient] yes .
+[doctor] okay .
+Great .
+All right .
+So i know that you did a review of systems sheet with the nurse when you checked in .
+You know , i know that you were talking about some nasal congestion .
+Do you have any other symptoms , chest pain , shortness of breath , abdominal pain , nausea or vomiting , anything like that ?
+[patient] no .
+[doctor] no ?
+Okay .
+All right .
+Well , i wan na go ahead and do a quick physical exam , okay ?
+[patient] okay .
+[doctor] hey , dragon , show me the vital signs .
+So here in the office , you know , your blood pressure looks really good , as does your heart rate .
+So you are doing a good job managing your blood pressure .
+So i'm gon na take a listen to your heart and lungs , okay ?
+[patient] okay .
+[doctor] okay .
+So on physical examination , i do n't appreciate any carotid bruits in your neck .
+On your heart exam i do notice a slight 2/6 systolic ejection murmur , which we've heard in the past , so i think that's stable .
+Your lungs in- are nice and clear , and you have some trace lower extremity edema bilaterally , so all that means is , you know , i agree , you know , maybe we should watch your diet a little bit better , okay ?
+But i wan na take a look at some of your results , okay ?
+[patient] okay .
+[doctor] all right .
+Hey , dragon , show me the ekg .
+And the nurses did an ekg before you came in , and that looks perfectly fine , okay ?
+So i wan na just go ahead and talk a little about your assessment and my plan for you .
+So for your first problem , your depression , i think you're doing a really good job with your strategies .
+I do n't think ... it does n't sound to me like i need to start you on any medication at this time , unless you feel differently .
+[patient] no , i'm , i'm , good in that department .
+[doctor] for your second problem , your high blood pressure , i agree , everything looks fine here now .
+I wan na just continue on the lisinopril , 20 milligrams a day .
+And i want you to continue to watch your blood pressures as well , and if they start rising , i want you to contact me , okay ?
+[patient] okay .
+[doctor] and for your third problem , for an annual exam maintenance , you know , you're due for a mammogram , so we'll go ahead and schedule that , okay ?
+[patient] all right .
+[doctor] all right .
+Do you have any questions ?
+[patient] um , can i take all my medicine at the same time ?
+Does it matter ?
+[doctor] yeah .
+You can set an alarm so that it reminds you to take your medication .
+But yeah , you can , you can take them altogether .
+[patient] okay .
+[doctor] all right .
+Hey , dragon , finalize the note .","The document outlines a conversation between a doctor and a patient named Elizabeth, a 66-year-old woman with a medical history of depression and hypertension. Elizabeth gets a regular annual checkup and mentions she has been dealing with her depression with weekly therapy sessions, mostly virtual but some recently in person. She also has a strong support system at home, comprising her husband and kids who live nearby. Elizabeth has been controlling her hypertension through prescribed lisinopril and monitored blood pressure, which has been stable. The doctor praises her for managing her condition well and asks her to maintain her current course of medication, while also advising her to keep an eye on her blood pressure levels.",gpt4,genaudit,ACIBENCH,,,,,,,1
+14,3df8bb51-92b1-487b-8a16-2a0c1f1f3801,elisa,Rachel Usher#ACIBENCH-D2N097:llama70b-ul2,"[doctor] elizabeth , how are you ?
+[patient] i'm doing okay .
+How are you ?
+[doctor] doing okay .
+So i know the nurse told you about dax .
+I'd like to tell dax a little bit about you , okay ?
+[patient] okay .
+[doctor] all right .
+Elizabeth is a 66-year-old female with a past medical history of significant for depression and hypertension who presents for her annual exam .
+So elizabeth , it's been a year since i've seen you .
+[patient] mm-hmm .
+[doctor] how are you doing ?
+[patient] i'm doing well .
+There's been so many events now that we've been able to get vaccinated , i've been able to see my grandkids again , go to more birthday parties , it's been fantastic .
+[doctor] yeah , i know .
+I've ... i mean , we've had some communication over telehealth and that type of thing , but it's not the same as being in-person , so i'm happy to see you today .
+Now tell me a little bit about , you know , we have n't really got a chance to talk about your depression .
+How are you ... how are you doing with that ?
+I know we have n't had you on medication in the past because you're on medication for other things .
+What are your strategies with dealing with it ?
+[patient] so i've been going to therapy once a week for the past year .
+Um , mostly virtually , um , but starting to get in-person .
+Virtual was a bit of a struggle , but i feel like being in-person with someone really helps me .
+[doctor] okay .
+And do y- do you have a good support system at home ?
+[patient] yes , i do .
+I have my husband and , uh , my kids are right down the street from me , so i'm very lucky .
+[doctor] okay .
+All right .
+So that's good to hear .
+[doctor] how about your blood pressure ?
+Did you buy the blood pressure cuff that i- [patient] yes .
+[doctor] .
+Told you to ?
+Okay .
+I know that we've been in communication and your blood pressures have been running okay .
+The last time i spoke with you , how are they doing since we last spoke ?
+[patient] they've been doing well .
+I've been using the cuff , um , once a day , and they seem pretty normal .
+[doctor] okay .
+And are you taking the lisinopril that i prescribed ?
+[patient] yes .
+[doctor] okay .
+Great .
+All right .
+So i know that you did a review of systems sheet with the nurse when you checked in .
+You know , i know that you were talking about some nasal congestion .
+Do you have any other symptoms , chest pain , shortness of breath , abdominal pain , nausea or vomiting , anything like that ?
+[patient] no .
+[doctor] no ?
+Okay .
+All right .
+Well , i wan na go ahead and do a quick physical exam , okay ?
+[patient] okay .
+[doctor] hey , dragon , show me the vital signs .
+So here in the office , you know , your blood pressure looks really good , as does your heart rate .
+So you are doing a good job managing your blood pressure .
+So i'm gon na take a listen to your heart and lungs , okay ?
+[patient] okay .
+[doctor] okay .
+So on physical examination , i do n't appreciate any carotid bruits in your neck .
+On your heart exam i do notice a slight 2/6 systolic ejection murmur , which we've heard in the past , so i think that's stable .
+Your lungs in- are nice and clear , and you have some trace lower extremity edema bilaterally , so all that means is , you know , i agree , you know , maybe we should watch your diet a little bit better , okay ?
+But i wan na take a look at some of your results , okay ?
+[patient] okay .
+[doctor] all right .
+Hey , dragon , show me the ekg .
+And the nurses did an ekg before you came in , and that looks perfectly fine , okay ?
+So i wan na just go ahead and talk a little about your assessment and my plan for you .
+So for your first problem , your depression , i think you're doing a really good job with your strategies .
+I do n't think ... it does n't sound to me like i need to start you on any medication at this time , unless you feel differently .
+[patient] no , i'm , i'm , good in that department .
+[doctor] for your second problem , your high blood pressure , i agree , everything looks fine here now .
+I wan na just continue on the lisinopril , 20 milligrams a day .
+And i want you to continue to watch your blood pressures as well , and if they start rising , i want you to contact me , okay ?
+[patient] okay .
+[doctor] and for your third problem , for an annual exam maintenance , you know , you're due for a mammogram , so we'll go ahead and schedule that , okay ?
+[patient] all right .
+[doctor] all right .
+Do you have any questions ?
+[patient] um , can i take all my medicine at the same time ?
+Does it matter ?
+[doctor] yeah .
+You can set an alarm so that it reminds you to take your medication .
+But yeah , you can , you can take them altogether .
+[patient] okay .
+[doctor] all right .
+Hey , dragon , finalize the note .","A 66-year-old female patient, Elizabeth, visits her doctor for an annual exam. She has a past medical history of depression and hypertension. Elizabeth reports that she has been doing well, with her depression managed through therapy and a good support system. Her blood pressure is under control, and she is taking her medication as prescribed. The doctor performs a physical exam and finds that Elizabeth has a slight systolic ejection murmur, clear lungs, and trace lower extremity edema bilaterally. The doctor decides to continue Elizabeth on her current medication and recommends that she continue to monitor her blood pressure and watch her diet.",llama70b,genaudit,ACIBENCH,,,,,,,1
+15,62afe3fe-a5a2-46b0-b0fb-b1ecb3c9bbca,sanjana,Rachel Usher#REDDIT-83:flanul2-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","I waited outside the locker rooms for my girlfriend while she changed, then walked out to find nobody.",flanul2,genaudit,REDDIT,,,,,,,1
+16,354dc5f7-2975-425e-8f7c-73fb54997db0,rachel_usher,Rachel Usher#REDDIT-83:flanul2-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","I waited outside the locker rooms for my girlfriend while she changed, then walked out to find nobody.",flanul2,genaudit,REDDIT,,,,,,,1
+17,506caedd-85e4-455b-919e-70e46e82108d,rachel_usher,Rachel Usher#REDDIT-83:flanul2-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","I waited outside the locker rooms for my girlfriend while she changed, then walked out to find nobody.",flanul2,genaudit,REDDIT,then walked out to find nobody,highlight-mistake,,likely,common,moderate_consequence,1
+18,13262bc9-3723-4e9c-b8bb-8562871fc2b6,rachel_usher,Rachel Usher#REDDIT-83:llama70b-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","A high school student was waiting for his girlfriend outside the locker rooms after her fencing practice, but ended up missing his bus. He is now walking 6 miles home in freezing temperatures without proper winter gear.",llama70b,genaudit,REDDIT,after her fencing practice,highlight-mistake,,not_likely,common,high_consequence,1
+19,70f296d4-fd32-448a-ab77-a50217f5a18a,rachel_usher,Rachel Usher#REDDIT-83:llama7b-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The writer and their girlfriend are both involved in winter sports at their high school. Today, the writer is late for their bus and doesn't realize that their girlfriend is still in the locker room until she comes out. The writer is left standing outside in the cold and snow without a way to get home, so they start making calls to try to find a ride. However, no one is available to pick them up, leaving the writer to walk home in freezing temperatures.",llama7b,genaudit,REDDIT,"Today, the writer is late for their bus and doesn't realize that their girlfriend is still in the locker room until she comes out",highlight-mistake,,not_likely,common,high_consequence,1
+20,8fbd06ac-4232-4505-8405-9d63cc3337c0,rachel_usher,Rachel Usher#REDDIT-83:mistral7b-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The document describes the experience of a high school student who participates in winter sports with their girlfriend. Today, the student has a late meet and must dress up for it. Meanwhile, their girlfriend has a normal practice that ends at 3:15 PM. The student waits outside the locker rooms to give their girlfriend a goodbye kiss before they leave for their respective activities. However, the student realizes that their bus leaves while they are waiting and they miss it. As a result, the student has to walk six miles in freezing temperatures to get home, wearing only a dress shirt and no gloves or hat. The document ends with the student wishing for luck.",mistral7b,genaudit,REDDIT,with their girlfriend,highlight-mistake,,not_likely,common,moderate_consequence,1
+21,add4d1ff-292f-43b3-abe3-b1febec7b137,rachel_usher,Rachel Usher#REDDIT-83:mistral7b-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The document describes the experience of a high school student who participates in winter sports with their girlfriend. Today, the student has a late meet and must dress up for it. Meanwhile, their girlfriend has a normal practice that ends at 3:15 PM. The student waits outside the locker rooms to give their girlfriend a goodbye kiss before they leave for their respective activities. However, the student realizes that their bus leaves while they are waiting and they miss it. As a result, the student has to walk six miles in freezing temperatures to get home, wearing only a dress shirt and no gloves or hat. The document ends with the student wishing for luck.",mistral7b,genaudit,REDDIT,ends at 3:15 PM,highlight-mistake,,not_likely,common,high_consequence,1
+22,3328a7f8-f6a7-41dc-81e3-043f29dd8f75,rachel_usher,Rachel Usher#REDDIT-83:geminipro-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The narrator, a high school student who participates in winter sports, had a late swim meet that required him to dress up. While waiting outside the locker rooms for his girlfriend, who was in fencing practice, he missed his bus. After giving her a kiss goodbye, he realized that he was alone in the snow and had to walk 6 miles home in his thin dress shirt and without gloves or a hat. He called his friend and family, but no one answered.",geminipro,genaudit,REDDIT,who was in fencing practice,highlight-mistake,,not_likely,common,high_consequence,1
+23,22339bbe-0bda-4f91-abb6-0b40ac03b2ad,rachel_usher,Rachel Usher#ACIBENCH-D2N097:llama70b-ul2,"[doctor] elizabeth , how are you ?
+[patient] i'm doing okay .
+How are you ?
+[doctor] doing okay .
+So i know the nurse told you about dax .
+I'd like to tell dax a little bit about you , okay ?
+[patient] okay .
+[doctor] all right .
+Elizabeth is a 66-year-old female with a past medical history of significant for depression and hypertension who presents for her annual exam .
+So elizabeth , it's been a year since i've seen you .
+[patient] mm-hmm .
+[doctor] how are you doing ?
+[patient] i'm doing well .
+There's been so many events now that we've been able to get vaccinated , i've been able to see my grandkids again , go to more birthday parties , it's been fantastic .
+[doctor] yeah , i know .
+I've ... i mean , we've had some communication over telehealth and that type of thing , but it's not the same as being in-person , so i'm happy to see you today .
+Now tell me a little bit about , you know , we have n't really got a chance to talk about your depression .
+How are you ... how are you doing with that ?
+I know we have n't had you on medication in the past because you're on medication for other things .
+What are your strategies with dealing with it ?
+[patient] so i've been going to therapy once a week for the past year .
+Um , mostly virtually , um , but starting to get in-person .
+Virtual was a bit of a struggle , but i feel like being in-person with someone really helps me .
+[doctor] okay .
+And do y- do you have a good support system at home ?
+[patient] yes , i do .
+I have my husband and , uh , my kids are right down the street from me , so i'm very lucky .
+[doctor] okay .
+All right .
+So that's good to hear .
+[doctor] how about your blood pressure ?
+Did you buy the blood pressure cuff that i- [patient] yes .
+[doctor] .
+Told you to ?
+Okay .
+I know that we've been in communication and your blood pressures have been running okay .
+The last time i spoke with you , how are they doing since we last spoke ?
+[patient] they've been doing well .
+I've been using the cuff , um , once a day , and they seem pretty normal .
+[doctor] okay .
+And are you taking the lisinopril that i prescribed ?
+[patient] yes .
+[doctor] okay .
+Great .
+All right .
+So i know that you did a review of systems sheet with the nurse when you checked in .
+You know , i know that you were talking about some nasal congestion .
+Do you have any other symptoms , chest pain , shortness of breath , abdominal pain , nausea or vomiting , anything like that ?
+[patient] no .
+[doctor] no ?
+Okay .
+All right .
+Well , i wan na go ahead and do a quick physical exam , okay ?
+[patient] okay .
+[doctor] hey , dragon , show me the vital signs .
+So here in the office , you know , your blood pressure looks really good , as does your heart rate .
+So you are doing a good job managing your blood pressure .
+So i'm gon na take a listen to your heart and lungs , okay ?
+[patient] okay .
+[doctor] okay .
+So on physical examination , i do n't appreciate any carotid bruits in your neck .
+On your heart exam i do notice a slight 2/6 systolic ejection murmur , which we've heard in the past , so i think that's stable .
+Your lungs in- are nice and clear , and you have some trace lower extremity edema bilaterally , so all that means is , you know , i agree , you know , maybe we should watch your diet a little bit better , okay ?
+But i wan na take a look at some of your results , okay ?
+[patient] okay .
+[doctor] all right .
+Hey , dragon , show me the ekg .
+And the nurses did an ekg before you came in , and that looks perfectly fine , okay ?
+So i wan na just go ahead and talk a little about your assessment and my plan for you .
+So for your first problem , your depression , i think you're doing a really good job with your strategies .
+I do n't think ... it does n't sound to me like i need to start you on any medication at this time , unless you feel differently .
+[patient] no , i'm , i'm , good in that department .
+[doctor] for your second problem , your high blood pressure , i agree , everything looks fine here now .
+I wan na just continue on the lisinopril , 20 milligrams a day .
+And i want you to continue to watch your blood pressures as well , and if they start rising , i want you to contact me , okay ?
+[patient] okay .
+[doctor] and for your third problem , for an annual exam maintenance , you know , you're due for a mammogram , so we'll go ahead and schedule that , okay ?
+[patient] all right .
+[doctor] all right .
+Do you have any questions ?
+[patient] um , can i take all my medicine at the same time ?
+Does it matter ?
+[doctor] yeah .
+You can set an alarm so that it reminds you to take your medication .
+But yeah , you can , you can take them altogether .
+[patient] okay .
+[doctor] all right .
+Hey , dragon , finalize the note .","A 66-year-old female patient, Elizabeth, visits her doctor for an annual exam. She has a past medical history of depression and hypertension. Elizabeth reports that she has been doing well, with her depression managed through therapy and a good support system. Her blood pressure is under control, and she is taking her medication as prescribed. The doctor performs a physical exam and finds that Elizabeth has a slight systolic ejection murmur, clear lungs, and trace lower extremity edema bilaterally. The doctor decides to continue Elizabeth on her current medication and recommends that she continue to monitor her blood pressure and watch her diet.",llama70b,genaudit,ACIBENCH,,,,,,,1
+24,de52a159-9386-4782-a0e7-7ba0fcac00b0,rachel_usher,Rachel Usher#REDDIT-83:geminipro-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The narrator, a high school student who participates in winter sports, had a late swim meet that required him to dress up. While waiting outside the locker rooms for his girlfriend, who was in fencing practice, he missed his bus. After giving her a kiss goodbye, he realized that he was alone in the snow and had to walk 6 miles home in his thin dress shirt and without gloves or a hat. He called his friend and family, but no one answered.",geminipro,genaudit,REDDIT,but no one answered,highlight-mistake,,not_likely,common,high_consequence,1
+25,4af845d4-79fd-44fb-94b4-ab21a79b37aa,rachel_usher,Rachel Usher#REDDIT-83:gpt4-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The document narrates a student's experience of participating in a winter sport at their high school. The individual misses their bus home after waiting for their girlfriend, who is also involved in sports, to finish changing after a normal practice day at school. They then realize they have to walk six miles home in freezing temperatures dressed inadequately for the weather, due to the school rule of dressing up for a meet.",gpt4,genaudit,REDDIT,home,highlight-mistake,,not_likely,common,moderate_consequence,1
+26,2870b029-8659-436c-b6c0-4cf2feb550a4,rachel_usher,Rachel Usher#REDDIT-83:gpt4-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The document narrates a student's experience of participating in a winter sport at their high school. The individual misses their bus home after waiting for their girlfriend, who is also involved in sports, to finish changing after a normal practice day at school. They then realize they have to walk six miles home in freezing temperatures dressed inadequately for the weather, due to the school rule of dressing up for a meet.",gpt4,genaudit,REDDIT,after,highlight-mistake,,not_likely,common,high_consequence,1
+27,71618f3a-11b9-4dfa-ab7f-a2270dfdba09,rachel_usher,Rachel Usher#REDDIT-83:gpt4-ul2,"Both me and my girlfriend participate in winter sports at our highschool, i swim and she fences.
+Today was a late meet for me (8pm meet) and it is a rule we must dress up for a meet.
+My girlfriend has a normal practice today, normally school gets out at 3:02 and her practice is at 3:15. she has to get changed so i wait outside the locker rooms for her so i could give her a kiss goodbye.
+What i don't realize is that my bus leaves while i'm standing outside the locker rooms.
+Being a slow dresser she is in there till the last minute.
+After she comes out i give her a kiss goodbye and walk outside.
+There was nothing, nobody, but the steady snow fall.
+Naturally i freak out and start making calls, my friend says he got dropped off already so i call my house... no answer.. my parents and older sister are working so no answer from them.. now i'm paying the price with a 6 mile walk hold in freezing temperatures in my thin dress shirt and no gloves or hat.
+Wish me luck!
+!","The document narrates a student's experience of participating in a winter sport at their high school. The individual misses their bus home after waiting for their girlfriend, who is also involved in sports, to finish changing after a normal practice day at school. They then realize they have to walk six miles home in freezing temperatures dressed inadequately for the weather, due to the school rule of dressing up for a meet.",gpt4,genaudit,REDDIT,due to the school rule,highlight-mistake,,not_likely,common,high_consequence,1
+28,df6e01b0-981b-4ef4-bcf4-226aa92d9475,rachel_usher,Rachel Usher#REDDIT-54:llama70b-ul2,"I thought my act test was today.
+It was yesterday.
+I spent a total of 30 minutes or so walking around a highschool trying to open every single door.
+I finally checked my test ticket and realized the date said saturday june 13. no wonder no one else was in the parking lot.","A person spent 30 minutes walking around a high school trying to open doors, only to realize that their ACT test was yesterday, not today, and that they had the wrong date on their test ticket.",llama70b,genaudit,REDDIT,they had the wrong date,highlight-mistake,,not_likely,common,high_consequence,1
+29,58d82aa5-d318-40e6-8b9a-e42ae72ad9ad,rachel_usher,Rachel Usher#REDDIT-54:gpt4-ul2,"I thought my act test was today.
+It was yesterday.
+I spent a total of 30 minutes or so walking around a highschool trying to open every single door.
+I finally checked my test ticket and realized the date said saturday june 13. no wonder no one else was in the parking lot.","The author mistakenly believed their ACT test was on a certain day and ended up wandering around an empty high school for about half an hour, trying to gain access. They eventually checked their test ticket, realizing the ACT was scheduled for the previous day, which explained the empty parking lot and locked school.",gpt4,genaudit,REDDIT,,,,,,,1
+30,03c66c9d-f6b1-4f50-86ec-5ea9133c8384,rachel_usher,Rachel Usher#ACIBENCH-D2N097:gpt4-ul2,"[doctor] elizabeth , how are you ?
+[patient] i'm doing okay .
+How are you ?
+[doctor] doing okay .
+So i know the nurse told you about dax .
+I'd like to tell dax a little bit about you , okay ?
+[patient] okay .
+[doctor] all right .
+Elizabeth is a 66-year-old female with a past medical history of significant for depression and hypertension who presents for her annual exam .
+So elizabeth , it's been a year since i've seen you .
+[patient] mm-hmm .
+[doctor] how are you doing ?
+[patient] i'm doing well .
+There's been so many events now that we've been able to get vaccinated , i've been able to see my grandkids again , go to more birthday parties , it's been fantastic .
+[doctor] yeah , i know .
+I've ... i mean , we've had some communication over telehealth and that type of thing , but it's not the same as being in-person , so i'm happy to see you today .
+Now tell me a little bit about , you know , we have n't really got a chance to talk about your depression .
+How are you ... how are you doing with that ?
+I know we have n't had you on medication in the past because you're on medication for other things .
+What are your strategies with dealing with it ?
+[patient] so i've been going to therapy once a week for the past year .
+Um , mostly virtually , um , but starting to get in-person .
+Virtual was a bit of a struggle , but i feel like being in-person with someone really helps me .
+[doctor] okay .
+And do y- do you have a good support system at home ?
+[patient] yes , i do .
+I have my husband and , uh , my kids are right down the street from me , so i'm very lucky .
+[doctor] okay .
+All right .
+So that's good to hear .
+[doctor] how about your blood pressure ?
+Did you buy the blood pressure cuff that i- [patient] yes .
+[doctor] .
+Told you to ?
+Okay .
+I know that we've been in communication and your blood pressures have been running okay .
+The last time i spoke with you , how are they doing since we last spoke ?
+[patient] they've been doing well .
+I've been using the cuff , um , once a day , and they seem pretty normal .
+[doctor] okay .
+And are you taking the lisinopril that i prescribed ?
+[patient] yes .
+[doctor] okay .
+Great .
+All right .
+So i know that you did a review of systems sheet with the nurse when you checked in .
+You know , i know that you were talking about some nasal congestion .
+Do you have any other symptoms , chest pain , shortness of breath , abdominal pain , nausea or vomiting , anything like that ?
+[patient] no .
+[doctor] no ?
+Okay .
+All right .
+Well , i wan na go ahead and do a quick physical exam , okay ?
+[patient] okay .
+[doctor] hey , dragon , show me the vital signs .
+So here in the office , you know , your blood pressure looks really good , as does your heart rate .
+So you are doing a good job managing your blood pressure .
+So i'm gon na take a listen to your heart and lungs , okay ?
+[patient] okay .
+[doctor] okay .
+So on physical examination , i do n't appreciate any carotid bruits in your neck .
+On your heart exam i do notice a slight 2/6 systolic ejection murmur , which we've heard in the past , so i think that's stable .
+Your lungs in- are nice and clear , and you have some trace lower extremity edema bilaterally , so all that means is , you know , i agree , you know , maybe we should watch your diet a little bit better , okay ?
+But i wan na take a look at some of your results , okay ?
+[patient] okay .
+[doctor] all right .
+Hey , dragon , show me the ekg .
+And the nurses did an ekg before you came in , and that looks perfectly fine , okay ?
+So i wan na just go ahead and talk a little about your assessment and my plan for you .
+So for your first problem , your depression , i think you're doing a really good job with your strategies .
+I do n't think ... it does n't sound to me like i need to start you on any medication at this time , unless you feel differently .
+[patient] no , i'm , i'm , good in that department .
+[doctor] for your second problem , your high blood pressure , i agree , everything looks fine here now .
+I wan na just continue on the lisinopril , 20 milligrams a day .
+And i want you to continue to watch your blood pressures as well , and if they start rising , i want you to contact me , okay ?
+[patient] okay .
+[doctor] and for your third problem , for an annual exam maintenance , you know , you're due for a mammogram , so we'll go ahead and schedule that , okay ?
+[patient] all right .
+[doctor] all right .
+Do you have any questions ?
+[patient] um , can i take all my medicine at the same time ?
+Does it matter ?
+[doctor] yeah .
+You can set an alarm so that it reminds you to take your medication .
+But yeah , you can , you can take them altogether .
+[patient] okay .
+[doctor] all right .
+Hey , dragon , finalize the note .","The document outlines a conversation between a doctor and a patient named Elizabeth, a 66-year-old woman with a medical history of depression and hypertension. Elizabeth gets a regular annual checkup and mentions she has been dealing with her depression with weekly therapy sessions, mostly virtual but some recently in person. She also has a strong support system at home, comprising her husband and kids who live nearby. Elizabeth has been controlling her hypertension through prescribed lisinopril and monitored blood pressure, which has been stable. The doctor praises her for managing her condition well and asks her to maintain her current course of medication, while also advising her to keep an eye on her blood pressure levels.",gpt4,genaudit,ACIBENCH,,,,,,,1
+31,282f918f-61c5-4b21-8aa7-9f0de3707e00,rachel_usher,Rachel Usher#XSUM-12889429:llama70b-ul2,"Mining giant rio tinto has lowered its minimum acceptances target slightly in a last ditch effort to takeover south africa's riversdale mining.
+Rio's offer of 16.50 australian dollars ($16.42; â£10.14) is now conditional on 47% of shareholders accepting it by 6 april.
+Previously its minimum target was 50%.
+The move came after talks on the a$3.9bn offer between rio and riversdale major shareholder, brazil's csn.
+If it fails to reach the new threshold, rio tinto will pay riversdale shareholders only a$16 a share.
+So far only 41% have said yes.
+The other key shareholder in riversdale is tata steel of india, which recently increased its stake to 27% and also has a director on the company's board.
+Csn, brazil's largest steelmaker, has also increased its riversdale stake to 19.9%.","Rio Tinto has reduced its minimum acceptance target to 47% from 50% in its efforts to acquire Riversdale Mining. The company has offered $16.50 Australian dollars per share, but if the new threshold is not met, it will only pay $16 per share. So far, 41% of shareholders have accepted the offer. Key shareholders in Riversdale include CSN and Tata Steel, who have increased their stakes in the company.",llama70b,genaudit,XSUM,,,,,,,1
+32,316250f7-457b-47c1-aa1d-a002fdcfe484,rachel_usher,Rachel Usher#XSUM-12889429:gpt4-ul2,"Mining giant rio tinto has lowered its minimum acceptances target slightly in a last ditch effort to takeover south africa's riversdale mining.
+Rio's offer of 16.50 australian dollars ($16.42; â£10.14) is now conditional on 47% of shareholders accepting it by 6 april.
+Previously its minimum target was 50%.
+The move came after talks on the a$3.9bn offer between rio and riversdale major shareholder, brazil's csn.
+If it fails to reach the new threshold, rio tinto will pay riversdale shareholders only a$16 a share.
+So far only 41% have said yes.
+The other key shareholder in riversdale is tata steel of india, which recently increased its stake to 27% and also has a director on the company's board.
+Csn, brazil's largest steelmaker, has also increased its riversdale stake to 19.9%.","Rio Tinto, the mining giant, has reduced its minimum acceptances target from 50% to 47% in an attempt to finalize its takeover of Riversdale Mining, a South African company. This decision follows negotiations concerning Rio's offer of A$16.50 per share, valued at A$3.9bn, with CSN, a major shareholder of Riversdale. If Rio Tinto fails to secure the new acceptance target, the offer will be lowered to A$16 per share. Currently, 41% of shareholders have agreed to the deal. Brazil's CSN and India's Tata Steel are notable key shareholders, owning 19.9% and 27% of Riversdale respectively.",gpt4,genaudit,XSUM,,,,,,,1

@@ -58,14 +58,40 @@ class User:
     def get_id(self):
         return self.username
 
+_users = None
+
 def get_users():
-    users = {
-        "sanjana": User(1, "sanjana", "sanjana"),
-        "elisa": User(2, "elisa", "elisa"),
-        "pranav": User(3, "pranav", "pranav"),
-        "rachel_usher": User(4, "rachel_usher", "rachel_usher")
-    }
-    return users
+    global _users
+    if _users is None:
+        current_count = 4
+        _users = {
+            "sanjana": User(1, "sanjana", "sanjana"),
+            "elisa": User(2, "elisa", "elisa"),
+            "pranav": User(3, "pranav", "pranav"),
+            "rachel_usher": User(4, "rachel_usher", "rachel_usher")
+        }
+        with open('user_ids.json', 'r') as fp:
+            user_strings = json.load(fp)
+        for uid, username in user_strings.items():
+            _users[username] = User(len(_users) + 1, username, username)
+    return _users
+
+
+# def get_users():
+#     current_count = 4
+#     users = {
+#         "sanjana": User(1, "sanjana", "sanjana"),
+#         "elisa": User(2, "elisa", "elisa"),
+#         "pranav": User(3, "pranav", "pranav"),
+#         "rachel_usher": User(4, "rachel_usher", "rachel_usher")
+#     }
+#     with open('user_ids.json', 'r') as fp:
+#         user_strings = json.load(fp)
+
+#     for uid, username in user_strings.items():
+#         users[username] = User(len(users) + 1, username, username)
+#     print(users)
+#     return users
 
 @login_manager.user_loader
 def load_user(username):
