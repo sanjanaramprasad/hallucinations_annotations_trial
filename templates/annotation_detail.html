@@ -379,13 +379,16 @@
         document.getElementById('undoAnnotation').addEventListener('click', function() {
             annotations = [];
             spanList = [];
-            let spans = document.querySelectorAll('.highlight-mistake, .highlight-inference,');
+            let spans = document.querySelectorAll('.highlight-mistake, .highlight-inference');
             spans.forEach(span => {
                 let parent = span.parentNode;
                 parent.replaceChild(document.createTextNode(span.textContent), span);
             });
             // document.getElementById('ratingForm').style.display = 'none';
             document.getElementById('additionalRatings').style.display = 'none';
+            document.getElementById('additionalRating1').style.display = 'none';
+            document.getElementById('additionalRating2').style.display = 'none';
+            document.getElementById('additionalRating3').style.display = 'none';
             currentSpan = null;
             updateSummaryText();
         });
