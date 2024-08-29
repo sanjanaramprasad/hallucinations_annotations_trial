@@ -56,6 +56,16 @@
             display: inline-block;
             cursor: pointer;
         }
+
+        .highlight-somewhat_mistake {
+            background-color: #ff9800;
+            border-radius: 3px;
+            padding: 2px 4px;
+            margin: 0 2px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
         .highlight-inference {
             background-color: #8bc34a;
             border-radius: 3px;
@@ -111,6 +121,7 @@
         }
 
         .highlight-mistake:hover .rating-box,
+        .highlight-somewhat_mistake:hover .rating-box,
         .highlight-inference:hover .rating-box,
         .highlight-category3:hover .rating-box {
             display: block; /* Show rating box on hover */
@@ -165,7 +176,7 @@
                     <select id="evidence" class="form-control">
                         <option value="">Select Answer</option>
                         <option value="yes">yes (explicit/direct contradiction)</option>
-                        <option value="yes">somewhat (implicit/indirect contradiction)</option>
+                        <option value="maybe">somewhat (implicit/indirect contradiction)</option>
                         <option value="no">no</option>
                     </select>
                 </div>
@@ -243,7 +254,7 @@
         }
 
         function attachSpanEventListeners() {
-            const highlightedSpans = document.querySelectorAll('.highlight-mistake, .highlight-inference');
+            const highlightedSpans = document.querySelectorAll('.highlight-mistake, .highlight-somewhat_mistake, .highlight-inference');
             highlightedSpans.forEach(span => {
                 let ratingBox = document.createElement('div');
                 ratingBox.className = 'rating-box';
@@ -313,7 +324,7 @@
 
         document.getElementById('evidence').addEventListener('change', function() {
             let evidenceValue = this.value;
-            let category = evidenceValue === 'yes' ? 'mistake' : 'inference';
+            let category = evidenceValue === 'yes' ? 'mistake' : evidenceValue === 'maybe'? 'somewhat_mistake': 'inference';
             // let category = 'inference';
 
             if (currentSpan) {
@@ -379,17 +390,18 @@
         document.getElementById('undoAnnotation').addEventListener('click', function() {
             annotations = [];
             spanList = [];
-            let spans = document.querySelectorAll('.highlight-mistake, .highlight-inference');
+            let spans = document.querySelectorAll('.highlight-mistake, .highlight-somewhat_mistake, .highlight-inference');
             spans.forEach(span => {
                 let parent = span.parentNode;
                 parent.replaceChild(document.createTextNode(span.textContent), span);
             });
-            // document.getElementById('ratingForm').style.display = 'none';
-            document.getElementById('additionalRatings').style.display = 'none';
-            document.getElementById('additionalRating1').style.display = 'none';
-            document.getElementById('additionalRating2').style.display = 'none';
-            document.getElementById('additionalRating3').style.display = 'none';
             currentSpan = null;
+            document.getElementById('evidenceForm').style.display = 'none';
+            document.getElementById('evidence').value = '';
+            document.getElementById('additionalRatings').style.display = 'none';
+            document.getElementById('additionalRating1').value = '';
+            document.getElementById('additionalRating2').value = '';
+            document.getElementById('additionalRating3').value = '';
             updateSummaryText();
         });
 
