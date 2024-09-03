@@ -28,8 +28,8 @@ metadata = MetaData(bind=db_engine)
 metadata.reflect()
 print(metadata)
 model_summaries = metadata.tables['model_summaries']
-label = metadata.tables['modified_label']
-
+label = metadata.tables['label']
+print(label)
 n_labels_per_doc = 6
 n_docs = 5
 
@@ -130,7 +130,7 @@ def next():
     result = connection.execute(query)
     ids = [row[0] for row in result]
 
-    label_table = metadata.tables['modified_label']
+    label_table = metadata.tables['label']
     query_annotated_ids = select([label_table.c.docid]).where(label_table.c.user_id == username).distinct()
     result_annotated_ids = connection.execute(query_annotated_ids)
     annotated_ids = {row[0] for row in result_annotated_ids}
@@ -180,7 +180,7 @@ def annotate_action():
         benchmark_dataset_name = result['benchmark_dataset_name']
 
         # Fetch existing annotations for the selected ID
-        label_table = metadata.tables['modified_label']
+        label_table = metadata.tables['label']
         query_annotations = sqlalchemy.select([label_table]).where(
                                 and_(
                                     label_table.c.docid == selected_id,
@@ -221,7 +221,7 @@ def save_annotations():
     username = current_user.username
     print("Data received:", data)
     with db_engine.connect() as connection:
-        label_table = metadata.tables['modified_label']
+        label_table = metadata.tables['label']
         query_annotated = sqlalchemy.select([label_table]).where(
                                 and_(
                                     model_summaries.c.docid == data['docid'],
@@ -253,6 +253,8 @@ def save_annotations():
                     origin=data['origin'],
                     nonfactual_span=None,
                     error_type=None,
+                    start_position =-1,
+                    end_postion =-1,
                     mistake_severity=None,
                     inference_likelihood=None,
                     inference_knowledge=None,
@@ -278,6 +280,8 @@ def save_annotations():
                         origin=data['origin'],
                         nonfactual_span=annotation['nonfactual_span'],
                         error_type=annotation['error_type'],
+                        start_position=eval(annotation['start_position']),
+                        end_position=eval(annotation['end_position']),
                         mistake_severity=annotation['mistake_severity'],
                         inference_likelihood=annotation['inference_likelihood'],
                         inference_knowledge=annotation['inference_knowledge'],
