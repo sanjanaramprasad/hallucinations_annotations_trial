@@ -462,6 +462,29 @@
             }
         }
 
+        // summaryElement.addEventListener('mouseup', function(event) {
+        //     let selectedText = window.getSelection().toString().trim();
+        //     if (selectedText.length > 0) {
+        //         let span = document.createElement('span');
+        //         span.textContent = selectedText;
+
+        //         let evidenceForm = document.getElementById('evidenceForm');
+        //         // let ratingForm = document.getElementById('ratingForm');
+        //         // let ratingLabel = document.getElementById('ratingLabel');
+        //         let additionalRatings = document.getElementById('additionalRatings');
+
+        //         evidenceForm.style.display = 'block';
+        //         // ratingForm.style.display = 'none';
+        //         additionalRatings.style.display = 'none';
+
+        //         let range = window.getSelection().getRangeAt(0);
+        //         range.deleteContents();
+        //         range.insertNode(span);
+
+        //         currentSpan = span;
+        //     }
+        // });
+
         summaryElement.addEventListener('mouseup', function(event) {
             let selectedText = window.getSelection().toString().trim();
             if (selectedText.length > 0) {
@@ -469,19 +492,42 @@
                 span.textContent = selectedText;
 
                 let evidenceForm = document.getElementById('evidenceForm');
-                // let ratingForm = document.getElementById('ratingForm');
-                // let ratingLabel = document.getElementById('ratingLabel');
                 let additionalRatings = document.getElementById('additionalRatings');
 
                 evidenceForm.style.display = 'block';
-                // ratingForm.style.display = 'none';
                 additionalRatings.style.display = 'none';
 
                 let range = window.getSelection().getRangeAt(0);
+                let fullText = summaryElement.textContent;
+
+                // Calculate the absolute start and end offsets in the original full text
+                let preSelectionRange = range.cloneRange();
+                preSelectionRange.selectNodeContents(summaryElement);
+                preSelectionRange.setEnd(range.startContainer, range.startOffset);
+                let startOffset = preSelectionRange.toString().length;
+
+                let postSelectionRange = range.cloneRange();
+                postSelectionRange.selectNodeContents(summaryElement);
+                postSelectionRange.setEnd(range.endContainer, range.endOffset);
+                let endOffset = startOffset + selectedText.length;
+
+                span.setAttribute('data-start', startOffset);
+                span.setAttribute('data-end', endOffset);
+
+                // Get the 5 words before the selected text
+                let prefix = fullText.substring(0, startOffset).split(/\s+/).slice(-5).join(" ");
+                // Get the 5 words after the selected text
+                let suffix = fullText.substring(endOffset).split(/\s+/).slice(0, 5).join(" ");
+
+                // Add data attributes to store the prefix and suffix
+                span.setAttribute('data-prefix', prefix);
+                span.setAttribute('data-suffix', suffix);
+
                 range.deleteContents();
                 range.insertNode(span);
 
                 currentSpan = span;
+                // alert(startOffset);
             }
         });
 
