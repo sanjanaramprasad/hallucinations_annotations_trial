@@ -11,14 +11,14 @@
             background-color: #f8f9fa;
             font-family: Arial, sans-serif;
         }
-        .container {
+        /* .container {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             max-width: 1300px;
             margin: auto;
-        }
+        } */
         .column {
             padding: 15px;
         }
@@ -27,19 +27,62 @@
             margin-bottom: 20px;
             color: #343a40;
         }
-        pre {
+        /* pre {
             white-space: pre-wrap;
             word-wrap: break-word;
             background-color: #f1f3f4;
-            padding: 15px;
+            padding: 30px;
             border-radius: 8px;
             border: 1px solid #ddd;
             font-size: 1rem;
             margin: 0;
-            height: 500px; /*Adjust height to fit the container */
-            overflow-y: auto; /* Add vertical scroll */
+            height: 600px; 
+            overflow-y: auto; 
             box-sizing: border-box;
+        } */
+
+        pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #f9f9f9; /* Light background */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd; /* Light border */
+    font-size: 1rem;
+    margin: 0;
+    height: 600px; /* Allow more height for large text */
+    overflow-y: auto;
+    box-sizing: border-box;
+    line-height: 1.5; /* Improve line height for readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean font */
+    word-wrap: break-word;
+}
+
+/* Specific styling for the summary box */
+    #summary {
+        background-color: #fff; /* White background for clarity */
+        border: 1px solid #ddd; /* Light border */
+        padding: 25px;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.7;
+        max-height: 600px;
+        overflow-y: auto;
+        resize: both;
+        word-wrap: break-word;
+    }
+
+/* Styling for the container around both boxes */
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            max-width: 1300px;
+            margin: auto;
         }
+
         .default-highlight {
             background-color: #d3d3d3;
             border-radius: 3px;
@@ -140,15 +183,42 @@
     </style>
 </head>
 <body>
+
+    
+      
+    
     <div class="container">
+        <h5>Currently annotating: {{ docid }}</h5>
+        
+        <h5>Annotation Progress</h5>
+        <p>You have annotated {{ annotated_count }} out of {{ total_count }} documents.</p>
+        <div class="progress" style="margin-bottom: 20px;">
+        <div class="progress-bar" 
+            role="progressbar" 
+            style="width: {{ progress_percent }}%;" 
+            aria-valuenow="{{ progress_percent }}" 
+            aria-valuemin="0" 
+            aria-valuemax="100">
+            {{ progress_percent }}%
+        </div>
+       
+        </div>
+
         <div class="header">
-            <h1>Annotation Tool</h1>
+            <!-- <h1>Annotation Tool</h1> -->
             <a href="/">Back to Dashboard</a>
         </div>
         <div class="row">
             <div class="col-md-6 column">
                 <h2>Source</h2>
-                <pre>{{ source }}</pre>
+                <pre style="
+                white-space: pre-wrap;
+                white-space: -moz-pre-wrap;
+                white-space: -o-pre-wrap;
+                word-wrap: break-word;
+                ">
+                    {{ source }}
+                </pre>
             </div>
             <div class="col-md-6 column">
                 <h2>Summary</h2>
@@ -214,11 +284,23 @@
                             <option value="low_consequence">Low impact (unlikely to be misleading or cause harm ) </option>
                         </select>
                         <button id="saveRatingInference" class="btn btn-primary mt-2">Save Rating</button>
+                        <button id="removeAnnotation" class="btn btn-warning mt-2" style="display: none;">Remove Annotation</button>
+
                 </div>
                 
                 
                 <button id="finalSubmit" class="btn btn-success mt-3">Submit</button>
                 <button id="undoAnnotation" class="btn btn-danger mt-3">Undo All Annotation</button>
+
+                {% if next_id %}
+                  <form action="/annotate_action" method="post">
+                      <input type="hidden" name="id" value="{{ next_id }}" />
+                      <button type="submit" class="btn btn-primary mt-3">Next</button>
+                  </form>
+                {% else %}
+                  <p>All unannotated IDs are processed.</p>
+                {% endif %}
+                
             </div>
         </div>
     </div>
@@ -254,12 +336,17 @@
         }
 
         function attachSpanEventListeners() {
-            const highlightedSpans = document.querySelectorAll('.highlight-mistake, .highlight-somewhat_mistake, .highlight-inference');
+            const highlightedSpans = document.querySelectorAll(
+            '.highlight-mistake, .highlight-somewhat_mistake, .highlight-inference'
+            );
+
             highlightedSpans.forEach(span => {
+                // Build the ratingBox for hover
                 let ratingBox = document.createElement('div');
                 ratingBox.className = 'rating-box';
                 span.appendChild(ratingBox);
 
+                // Show/hide rating info on hover
                 span.addEventListener('mouseenter', function() {
                     showRatings(span);
                 });
@@ -271,8 +358,84 @@
                         ratingBox.style.display = 'none';
                     }
                 });
+
+                span.addEventListener('click', function(event) {
+                    event.stopPropagation(); 
+                    // 1. Grab existing data from the span
+                    const currentErrorType = span.className;
+                    const inferenceLikelihood = span.getAttribute('data-additional-rating1');
+                    const inferenceKnowledge = span.getAttribute('data-additional-rating2');
+                    const inferenceSeverity = span.getAttribute('data-additional-rating3');
+
+                    // 2. Show your forms
+                    const evidenceForm = document.getElementById('evidenceForm');
+                    const additionalRatings = document.getElementById('additionalRatings');
+                    evidenceForm.style.display = 'block';
+                    additionalRatings.style.display = 'block';
+
+                    // 3. Populate the fields
+                    if (currentErrorType.includes('highlight-mistake')) {
+                        document.getElementById('evidence').value = 'yes';
+                    } else if (currentErrorType.includes('highlight-somewhat_mistake')) {
+                        document.getElementById('evidence').value = 'maybe';
+                    } else if (currentErrorType.includes('highlight-inference')) {
+                        document.getElementById('evidence').value = 'no';
+                    }
+                    document.getElementById('additionalRating1').value = inferenceLikelihood || '';
+                    document.getElementById('additionalRating2').value = inferenceKnowledge || '';
+                    document.getElementById('additionalRating3').value = inferenceSeverity || '';
+
+                    // 4. Store reference to this span so we know we are "editing" it
+                    currentSpan = span;
+
+                    // 5. Show the "Remove Annotation" button
+                    document.getElementById('removeAnnotation').style.display = 'inline-block';
+                });
+
+
+                // ------------- NEW: On click, open the "edit" flow -------------
+                // span.addEventListener('click', function(event) {
+                //     event.stopPropagation(); 
+                //     // Make sure we don't trigger the mouseup/selection logic
+
+                //     // 1. Grab the existing data from the span
+                //     const currentErrorType = span.className; 
+                //     // e.g. "highlight-mistake" or "highlight-inference", etc.
+                //     const inferenceLikelihood = span.getAttribute('data-additional-rating1');
+                //     const inferenceKnowledge = span.getAttribute('data-additional-rating2');
+                //     const inferenceSeverity = span.getAttribute('data-additional-rating3');
+                //     // If you have “mistake_severity” stored, you can get it similarly:
+                //     // const mistakeSeverity = span.getAttribute('data-rating') || '';
+
+                //     // 2. Show your forms (the same ones you show when first selecting text)
+                //     const evidenceForm = document.getElementById('evidenceForm');
+                //     const additionalRatings = document.getElementById('additionalRatings');
+                //     evidenceForm.style.display = 'block';
+                //     additionalRatings.style.display = 'block'; 
+                //     // If you only want to show them if it’s “inference,” then toggle logic accordingly.
+
+                //     // 3. Based on the errorType, populate the <select> or radio buttons
+                //     // Suppose your "evidence" select has "yes" => highlight-mistake, "maybe" => highlight-somewhat_mistake, "no" => highlight-inference.
+                //     // You can reverse-map it:
+                //     if (currentErrorType.includes('highlight-mistake')) {
+                //         document.getElementById('evidence').value = 'yes';
+                //     } else if (currentErrorType.includes('highlight-somewhat_mistake')) {
+                //         document.getElementById('evidence').value = 'maybe';
+                //     } else if (currentErrorType.includes('highlight-inference')) {
+                //         document.getElementById('evidence').value = 'no';
+                //     }
+
+                //     // Populate the 3 inference ratings if relevant
+                //     document.getElementById('additionalRating1').value = inferenceLikelihood || '';
+                //     document.getElementById('additionalRating2').value = inferenceKnowledge || '';
+                //     document.getElementById('additionalRating3').value = inferenceSeverity || '';
+                    
+                //     // 4. Store a reference to this span somewhere so we know we are "editing" it
+                //     currentSpan = span;
+                // });
             });
         }
+
 
         function showRatings(span) {
             let ratingBox = span.querySelector('.rating-box');
@@ -322,43 +485,45 @@
             }
         });
 
+
+
         document.getElementById('evidence').addEventListener('change', function() {
             let evidenceValue = this.value;
-            let category = evidenceValue === 'yes' ? 'mistake' : evidenceValue === 'maybe'? 'somewhat_mistake': 'inference';
-            // let category = 'inference';
+            // yes => 'mistake', maybe => 'somewhat_mistake', no => 'inference'
+            let category = evidenceValue === 'yes'
+            ? 'mistake'
+            : evidenceValue === 'maybe'
+                ? 'somewhat_mistake'
+                : 'inference';
 
             if (currentSpan) {
+                // Instead of creating a new span, we just update the existing highlight’s class:
                 currentSpan.className = `highlight-${category}`;
-                // document.getElementById('ratingForm').style.display = 'none';
+
+                // Also reveal the additional ratings panel, if your logic calls for it
                 document.getElementById('additionalRatings').style.display = 'block';
-                // if (category === 'mistake') {
-                    
-                //     document.getElementById('ratingForm').style.display = 'block';
-                //     document.getElementById('ratingLabel').textContent = 'How severe is the mistake?';
-                //     document.getElementById('additionalRatings').style.display = 'none';
-                // } else if (category === 'inference') {
-                //     document.getElementById('ratingForm').style.display = 'none';
-                //     document.getElementById('additionalRatings').style.display = 'block';
-                // }
             }
         });
 
-        // document.getElementById('saveRatingMistake').addEventListener('click', function() {
-        //     let rating = document.getElementById('rating').value;
 
-        //     if (currentSpan && currentSpan.classList.contains('highlight-mistake')) {
-        //         if (!rating) {
-        //             alert('Please select a rating.');
-        //             return;
-        //         }
-        //         currentSpan.setAttribute('data-rating', rating);
-        //         spanList.push(currentSpan);
-        //         currentSpan = null;
-        //         document.getElementById('evidenceForm').style.display = 'none';
-        //         document.getElementById('evidence').value = '';
-        //         document.getElementById('ratingForm').style.display = 'none';
-        //         document.getElementById('rating').value = '';
-                
+        // document.getElementById('evidence').addEventListener('change', function() {
+        //     let evidenceValue = this.value;
+        //     let category = evidenceValue === 'yes' ? 'mistake' : evidenceValue === 'maybe'? 'somewhat_mistake': 'inference';
+        //     // let category = 'inference';
+
+        //     if (currentSpan) {
+        //         currentSpan.className = `highlight-${category}`;
+        //         // document.getElementById('ratingForm').style.display = 'none';
+        //         document.getElementById('additionalRatings').style.display = 'block';
+        //         // if (category === 'mistake') {
+                    
+        //         //     document.getElementById('ratingForm').style.display = 'block';
+        //         //     document.getElementById('ratingLabel').textContent = 'How severe is the mistake?';
+        //         //     document.getElementById('additionalRatings').style.display = 'none';
+        //         // } else if (category === 'inference') {
+        //         //     document.getElementById('ratingForm').style.display = 'none';
+        //         //     document.getElementById('additionalRatings').style.display = 'block';
+        //         // }
         //     }
         // });
 
@@ -368,15 +533,18 @@
             let additionalRating3 = document.getElementById('additionalRating3').value;
 
             if (currentSpan) {
-                if (!additionalRating1 || !additionalRating2 || !additionalRating3) {
-                    alert('Please select all additional ratings.');
-                    return;
-                }
-
+                // Update existing span’s data attributes
                 currentSpan.setAttribute('data-additional-rating1', additionalRating1);
                 currentSpan.setAttribute('data-additional-rating2', additionalRating2);
                 currentSpan.setAttribute('data-additional-rating3', additionalRating3);
+
+                // If user is done editing, push to list
+                // But: if it was already in the annotation array, do we re-insert or update?
+                // Possibly you do a search in annotations[] to update the object.
+                // Or you can remove + re-add. Example of re-adding for simplicity:
                 spanList.push(currentSpan);
+
+                // Clear forms and reset
                 currentSpan = null;
                 document.getElementById('evidenceForm').style.display = 'none';
                 document.getElementById('evidence').value = '';
@@ -386,6 +554,32 @@
                 document.getElementById('additionalRating3').value = '';
             }
         });
+
+
+        // document.getElementById('saveRatingInference').addEventListener('click', function() {
+        //     let additionalRating1 = document.getElementById('additionalRating1').value;
+        //     let additionalRating2 = document.getElementById('additionalRating2').value;
+        //     let additionalRating3 = document.getElementById('additionalRating3').value;
+
+        //     if (currentSpan) {
+        //         if (!additionalRating1 || !additionalRating2 || !additionalRating3) {
+        //             alert('Please select all additional ratings.');
+        //             return;
+        //         }
+
+        //         currentSpan.setAttribute('data-additional-rating1', additionalRating1);
+        //         currentSpan.setAttribute('data-additional-rating2', additionalRating2);
+        //         currentSpan.setAttribute('data-additional-rating3', additionalRating3);
+        //         spanList.push(currentSpan);
+        //         currentSpan = null;
+        //         document.getElementById('evidenceForm').style.display = 'none';
+        //         document.getElementById('evidence').value = '';
+        //         document.getElementById('additionalRatings').style.display = 'none';
+        //         document.getElementById('additionalRating1').value = '';
+        //         document.getElementById('additionalRating2').value = '';
+        //         document.getElementById('additionalRating3').value = '';
+        //     }
+        // });
 
         document.getElementById('undoAnnotation').addEventListener('click', function() {
             annotations = [];
@@ -405,15 +599,50 @@
             updateSummaryText();
         });
 
+        document.getElementById('removeAnnotation').addEventListener('click', function() {
+            if (!currentSpan) return;
+
+            // Step 1: Capture the text
+            const text = currentSpan.textContent;
+
+            // Step 2: Replace the <span> with the raw text node
+            const parent = currentSpan.parentNode;
+            parent.replaceChild(document.createTextNode(text), currentSpan);
+
+            // Step 3: Clear out the references, forms, etc.
+            currentSpan = null;
+            document.getElementById('evidenceForm').style.display = 'none';
+            document.getElementById('additionalRatings').style.display = 'none';
+            // Clear dropdowns
+            document.getElementById('evidence').value = '';
+            document.getElementById('additionalRating1').value = '';
+            document.getElementById('additionalRating2').value = '';
+            document.getElementById('additionalRating3').value = '';
+
+            // Hide the remove button again
+            this.style.display = 'none';
+
+            // If you also want to remove that annotation from `spanList` or `annotations`, 
+            // you'll need logic to find it by text or something more robust:
+            // e.g.:
+            // annotations = annotations.filter(a => a.nonfactual_span !== text);
+            // or if you are storing an ID on the span, you can filter by that instead.
+        });
+
+
         document.getElementById('finalSubmit').addEventListener('click', function() {
-            spanList.forEach(span => {
+            // We rebuild the annotations array from scratch
+            annotations = [];
+            let allHighlightedSpans = document.querySelectorAll('.highlight-mistake, .highlight-somewhat_mistake, .highlight-inference');
+
+            allHighlightedSpans.forEach(span => {
                 let annotation = {
                     nonfactual_span: span.textContent,
-                    error_type: span.className,
-                    mistake_severity: span.getAttribute('data-rating'),
+                    error_type: span.className, 
+                    mistake_severity: span.getAttribute('data-rating') || null,
                     inference_likelihood: span.getAttribute('data-additional-rating1'),
                     inference_knowledge: span.getAttribute('data-additional-rating2'),
-                    inference_severity: span.getAttribute('data-additional-rating3')
+                    inference_severity: span.getAttribute('data-additional-rating3'),
                 };
                 annotations.push(annotation);
             });
@@ -429,25 +658,68 @@
             };
 
             fetch('/save_annotations', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                }).then(response => {
-                    if (response.ok) {
-                        alert('Annotations submitted successfully!');
-                    } else {
-                        alert('Failed to submit annotations.');
-                    }
-                }).catch(error => {
-                    console.error('Error submitting annotations:', error);
-                    alert('An error occurred while submitting annotations.');
-                });
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Annotations submitted successfully!');
+                } else {
+                    alert('Failed to submit annotations.');
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting annotations:', error);
+                alert('An error occurred while submitting annotations.');
+            });
         });
+
+
+        // document.getElementById('finalSubmit').addEventListener('click', function() {
+        //     spanList.forEach(span => {
+        //         let annotation = {
+        //             nonfactual_span: span.textContent,
+        //             error_type: span.className,
+        //             mistake_severity: span.getAttribute('data-rating'),
+        //             inference_likelihood: span.getAttribute('data-additional-rating1'),
+        //             inference_knowledge: span.getAttribute('data-additional-rating2'),
+        //             inference_severity: span.getAttribute('data-additional-rating3')
+        //         };
+        //         annotations.push(annotation);
+        //     });
+
+        //     let data = {
+        //         docid: document.getElementById('docid').value,
+        //         source: document.getElementById('source').value,
+        //         summary: document.getElementById('summary').textContent.trim(),
+        //         model: document.getElementById('model').value,
+        //         origin: document.getElementById('origin').value,
+        //         benchmark_dataset_name: document.getElementById('benchmark_dataset_name').value,
+        //         annotations: annotations
+        //     };
+
+        //     fetch('/save_annotations', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: JSON.stringify(data)
+        //         }).then(response => {
+        //             if (response.ok) {
+        //                 alert('Annotations submitted successfully!');
+        //             } else {
+        //                 alert('Failed to submit annotations.');
+        //             }
+        //         }).catch(error => {
+        //             console.error('Error submitting annotations:', error);
+        //             alert('An error occurred while submitting annotations.');
+        //         });
+        // });
 
         updateSummaryText();
     });
     </script>
 </body>
 </html>
+
