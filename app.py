@@ -292,7 +292,8 @@ def annotate_action():
     query_annotated = select([label_table.c.docid]).where(label_table.c.user_id == username).distinct()
     result_annotated = connection.execute(query_annotated)
     annotated_ids = {row[0] for row in result_annotated}
-    annotated_count = len(annotated_ids)  # how many docs the user has annotated
+    annotated_ids = [each for each in annotated_ids if each in all_ids]
+    annotated_count = len(set(annotated_ids))  # how many docs the user has annotated
     
     # Calculate progress (avoid division by zero):
     if total_count > 0:
